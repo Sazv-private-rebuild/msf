@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<title>MSF Links</title>
+<title>My Source Finance</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="MSF Links">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -53,11 +53,11 @@ var LINKS = [
 ];
 var base = location.origin + location.pathname.replace(/links(\.html)?\/?$/, ''); // works for /links and /links.html
 document.getElementById('list').innerHTML = LINKS.map(function (l, i) {
-  return '<li><a class="open" href="' + base + '?app=' + l[0] + '"><b>' + l[1] + '</b><span>' + l[2] + '</span></a><button type="button" data-i="' + i + '" aria-label="Send ' + l[1] + ' link">Send</button></li>';
+  return '<li><a class="open" href="' + base + l[0] + '/"><b>' + l[1] + '</b><span>' + l[2] + '</span></a><button type="button" data-i="' + i + '" aria-label="Send ' + l[1] + ' link">Send</button></li>';
 }).join('');
 document.getElementById('list').addEventListener('click', function (e) {
   var b = e.target.closest('button'); if (!b) return;
-  var l = LINKS[b.dataset.i], url = base + '?app=' + l[0];
+  var l = LINKS[b.dataset.i], url = base + l[0] + '/';
   var text = 'My Source Finance — ' + l[1] + (l[0] === 'dscr' ? '' : ' application');
   if (navigator.share) { navigator.share({ title: text, text: text, url: url }).catch(function () {}); return; }
   (navigator.clipboard ? navigator.clipboard.writeText(url) : Promise.reject()).then(function () {

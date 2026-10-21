@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<base href="../">
+<meta name="msf-app" content="private">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="My Source Finance">
+<meta property="og:title" content="Private / Fix &amp; Flip Application — My Source Finance">
+<meta property="og:description" content="Bridge, fix-and-flip and rental financing for investors — secure application, about 7 minutes.">
+<meta property="og:url" content="https://sazv-private-rebuild.github.io/msf/private/">
+<meta property="og:image" content="https://sazv-private-rebuild.github.io/msf/msf-logo-640.png">
+<meta property="og:image:width" content="640">
+<meta property="og:image:height" content="325">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Private / Fix &amp; Flip Application — My Source Finance">
+<meta name="twitter:description" content="Bridge, fix-and-flip and rental financing for investors — secure application, about 7 minutes.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Private / Fix &amp; Flip Application — My Source Finance</title>
+<meta name="description" content="Bridge, fix-and-flip and rental financing for investors — secure application, about 7 minutes.">
+<meta name="theme-color" content="#08142b">
+<meta name="robots" content="noindex">
+<meta name="referrer" content="no-referrer">
+<meta name="format-detection" content="telephone=no">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preload" as="image" href="msf-logo-640.webp" type="image/webp">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&display=swap">
+<style>
+:root{
+  --mid:#08142b; --deep:#0d1d3b; --field:#0f2247; --line:#25385c; --line2:#34507f;
+  --gold:#c9a24a; --gold2:#e9cf8a; --gold3:#8a6a24; --text:#f2eada; --mut:#a9b5c9; --err:#ff9d8f; --ok:#8fd3a8;
+  --serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --metal:linear-gradient(180deg,#f6e4a6 0%,#e0bd63 38%,#b98a2e 62%,#e6c773 100%);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;background:var(--mid)}
+body{margin:0;min-height:100vh;background:radial-gradient(120% 60% at 50% -10%,#12285a 0%,var(--mid) 60%) fixed,var(--mid);color:var(--text);font:17px/1.5 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:var(--gold2)}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--gold2);outline-offset:2px}
+.wrap{max-width:640px;margin:0 auto;padding:0 max(16px,env(safe-area-inset-right)) 0 max(16px,env(safe-area-inset-left))}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* top bar */
+.bar{position:sticky;top:0;z-index:5;background:rgba(8,20,43,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top)}
+.bar .wrap{display:flex;align-items:center;gap:10px;min-height:56px}
+.bar img{height:30px;width:auto}
+.bar .nm{font:600 19px/1.1 var(--serif);color:var(--gold2);letter-spacing:.02em}
+.bar .nm small{display:block;font:12px/1.3 var(--sans);color:var(--mut);letter-spacing:0}
+.bar .sv{margin-left:auto;font-size:13px;color:var(--mut);text-align:right;max-width:44%}
+.prog{height:3px;background:var(--line);position:relative}
+.prog i{position:absolute;left:0;top:0;bottom:0;background:var(--metal);transition:width .35s ease}
+
+/* welcome */
+.hero{text-align:center;padding:34px 0 8px}
+.hero picture img{width:min(300px,78vw);height:auto;filter:drop-shadow(0 10px 24px rgba(0,0,0,.45))}
+.hero h1{font:600 34px/1.12 var(--serif);margin:22px 0 8px;color:var(--text)}
+.hero p{color:var(--mut);margin:0 auto;max-width:30em}
+.rule{height:1px;margin:26px auto;max-width:220px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.pick{display:grid;gap:12px;margin:8px 0 18px}
+.pick button{display:grid;grid-template-columns:1fr auto;gap:2px 12px;text-align:left;width:100%;padding:16px 18px;border-radius:14px;border:1px solid var(--line2);background:linear-gradient(180deg,#112553,#0c1c3d);cursor:pointer;min-height:64px}
+.pick button b{font:600 22px/1.2 var(--serif);color:var(--gold2)}
+.pick button span{grid-column:1;color:var(--mut);font-size:15px}
+.pick button em{grid-row:1/3;grid-column:2;align-self:center;font-style:normal;font-size:13px;color:var(--mut);white-space:nowrap}
+.pick button[aria-pressed=true]{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold) inset}
+.hero.one{padding:18px 0 4px}
+.hero.one picture img{width:min(200px,56vw)}
+.hero.one h1{font-size:32px;margin:14px 0 6px}
+.hero .lead{color:var(--text);opacity:.9}
+.hero .mins{font-size:14px;margin-top:6px}
+.go{display:grid;gap:10px;margin:18px 0 6px}
+.other{text-align:center;margin:8px 0 0}
+.need{border-left:2px solid var(--gold3);padding:2px 0 2px 14px;margin:18px 0;color:var(--mut);font-size:15px}
+.need b{color:var(--text);font-weight:600}
+
+/* screen */
+.head{padding:24px 0 6px}
+.step{font-size:14px;color:var(--gold);margin:0 0 4px}
+h2{font:600 30px/1.15 var(--serif);margin:0;outline:none}
+.intro{color:var(--mut);margin:8px 0 0;font-size:15px}
+form{padding:8px 0 140px}
+.f{margin:22px 0 0}
+.f[hidden]{display:none}
+.l{display:block;font-weight:600;font-size:16px;margin:0 0 8px;color:var(--text)}
+.l .opt{font-weight:400;color:var(--mut);font-size:14px}
+.h{font-size:14px;color:var(--mut);margin:-4px 0 8px}
+.in{position:relative}
+input[type=text],input[type=email],input[type=tel],input[type=date],input[type=month],select,textarea{
+  display:block;width:100%;min-height:52px;font-size:17px;padding:13px 14px;border-radius:12px;border:1px solid var(--line2);background:var(--field);color:var(--text);-webkit-appearance:none;appearance:none}
+input::placeholder,textarea::placeholder{color:#7f8da6}
+select{background-image:linear-gradient(45deg,transparent 50%,var(--gold) 50%),linear-gradient(135deg,var(--gold) 50%,transparent 50%);background-position:calc(100% - 20px) 23px,calc(100% - 14px) 23px;background-size:6px 6px;background-repeat:no-repeat;padding-right:40px}
+textarea{min-height:110px;resize:vertical}
+input:focus,select:focus,textarea:focus{border-color:var(--gold);outline:none;box-shadow:0 0 0 3px rgba(201,162,74,.28)}
+.money input{padding-left:30px}.money::before{content:"$";position:absolute;left:14px;top:14px;color:var(--gold);pointer-events:none}
+.pct input{padding-right:34px}.pct::after{content:"%";position:absolute;right:14px;top:14px;color:var(--gold);pointer-events:none}
+fieldset{border:0;margin:0;padding:0;min-width:0}
+legend{padding:0}
+.ch{display:grid;gap:8px}
+.ch.two{grid-template-columns:1fr 1fr}
+.c{display:flex;align-items:center;gap:12px;min-height:52px;padding:12px 14px;border-radius:12px;border:1px solid var(--line2);background:var(--field);cursor:pointer;font-size:16px}
+.c input{appearance:none;-webkit-appearance:none;width:22px;height:22px;flex:none;margin:0;border:1.5px solid var(--mut);border-radius:50%;display:grid;place-content:center}
+.c input[type=checkbox]{border-radius:6px}
+.c input::after{content:"";width:12px;height:12px;border-radius:50%;background:var(--gold);transform:scale(0);transition:transform .12s}
+.c input[type=checkbox]::after{border-radius:2px;width:12px;height:12px;clip-path:polygon(14% 44%,0 65%,50% 100%,100% 16%,80% 0,43% 62%)}
+.c input:checked{border-color:var(--gold)}.c input:checked::after{transform:scale(1)}
+.c:has(input:checked){border-color:var(--gold);background:#132a58}
+.c input:focus-visible{outline:3px solid var(--gold2);outline-offset:2px}
+.bad input,.bad select,.bad textarea,.bad .c{border-color:var(--err)}
+.msg{color:var(--err);font-size:14px;margin-top:6px}.msg:empty{display:none}
+.alert{background:#3a1820;border:1px solid #7d3440;color:#ffd9d3;border-radius:12px;padding:12px 14px;margin:16px 0 0;font-size:15px}
+.note{background:#0f2a4a;border:1px solid #23507a;border-radius:12px;padding:12px 14px;margin:16px 0 0;font-size:15px;color:#d5e3f5}
+
+/* groups, tables */
+.grp{margin:26px 0 0;padding:16px;border:1px solid var(--line);border-radius:16px;background:rgba(13,29,59,.6)}
+.grp>h3,.tbl>h3{font:600 22px/1.2 var(--serif);margin:0;color:var(--gold2)}
+.grp .f:first-of-type{margin-top:14px}
+.calc{margin:16px 0 0;padding:12px 14px;border-radius:12px;background:#0a1a36;border:1px dashed var(--gold3);font-size:15px}
+.calc div{display:flex;justify-content:space-between;gap:10px;padding:2px 0}.calc b{color:var(--gold2);font-weight:600;white-space:nowrap}
+.calc small{display:block;color:var(--mut);font-size:12.5px;margin-top:4px}
+.tbl{margin:26px 0 0}
+.deal{margin:22px 0 0;padding:16px;border-radius:16px;border:1px solid var(--gold);background:linear-gradient(180deg,#132a58,#0c1c3d);font-size:15px}
+.deal h4{font:600 19px/1.2 var(--serif);color:var(--gold2);margin:14px 0 6px}.deal h4:first-child{margin-top:0}
+.deal div{display:flex;justify-content:space-between;gap:12px;padding:3px 0;border-bottom:1px solid rgba(201,162,74,.15)}
+.deal b{color:var(--text);font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums}.deal b.okv{color:var(--ok)}.deal b.badv{color:var(--err)}
+.deal small{display:block;color:var(--mut);font-size:12.5px;margin-top:10px}
+.row{margin:12px 0 0;padding:14px;border:1px solid var(--line);border-radius:14px;background:rgba(13,29,59,.6)}
+.row .rh{display:flex;justify-content:space-between;align-items:center;font-weight:600;color:var(--gold2)}
+.row .f{margin-top:12px}
+.row .grid{display:grid;grid-template-columns:1fr 1fr;gap:0 10px}
+.row .grid .w{grid-column:1/-1}
+.later{margin:12px 0 0}
+.link{background:none;border:0;color:var(--gold2);text-decoration:underline;padding:10px 0;min-height:44px;cursor:pointer;font-size:15px}
+.add{display:block;width:100%;margin:12px 0 0;min-height:50px;border-radius:12px;border:1px dashed var(--gold3);background:none;color:var(--gold2);font-weight:600;cursor:pointer}
+
+/* docs */
+.doc{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;padding:14px 0;border-bottom:1px solid var(--line)}
+.doc .dl{flex:1;min-width:58%}
+.doc .dl b{display:block;font-weight:600;font-size:16px}
+.doc .files{flex-basis:100%;font-size:14px;color:var(--mut)}
+.doc .files div{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:2px 0}
+.doc .files span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.up{position:relative;display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 16px;border-radius:22px;border:1px solid var(--gold);color:var(--gold2);font-weight:600;font-size:15px;cursor:pointer}
+.up input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%}
+.up:focus-within{outline:3px solid var(--gold2);outline-offset:2px}
+.secure{display:flex;gap:12px;margin:30px 0 0;padding:16px;border-radius:16px;border:1px solid #2f5a4a;background:#0c2a2a}
+.secure svg{flex:none;margin-top:2px}
+.secure p{margin:0;font-size:15px;color:#cfe7dc}
+
+/* review */
+.rv{margin:22px 0 0;border-top:1px solid var(--line)}
+.rv section{padding:14px 0;border-bottom:1px solid var(--line)}
+.rv .sh{display:flex;justify-content:space-between;align-items:baseline}
+.rv h3{font:600 21px/1.2 var(--serif);margin:0;color:var(--gold2)}
+.rv dl{margin:8px 0 0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:4px 12px;font-size:15px}
+.rv dt{color:var(--mut)}.rv dd{margin:0;word-break:break-word}
+.cons{margin:20px 0 0;display:grid;gap:10px}
+.cons .c{align-items:flex-start;font-size:15px;line-height:1.45}
+.cons .c input{margin-top:1px}
+
+/* action bar */
+.act{position:fixed;left:0;right:0;bottom:0;z-index:6;background:rgba(8,20,43,.96);border-top:1px solid var(--line);padding:10px 0 calc(10px + env(safe-area-inset-bottom))}
+.act .wrap{display:flex;gap:10px;align-items:center}
+.btn{min-height:54px;border-radius:14px;border:0;padding:0 22px;font-weight:700;font-size:17px;cursor:pointer}
+.pri{flex:1;background:var(--metal);color:#1d1404;box-shadow:0 6px 18px rgba(201,162,74,.22)}
+.sec{background:transparent;border:1px solid var(--line2);color:var(--text)}
+.btn[disabled]{opacity:.55}
+.act .later2{display:block;text-align:center;font-size:14px;margin-top:4px}
+
+/* done + sheet */
+.done{text-align:center;padding:40px 0 30px}
+.done h2{font-size:34px}
+.ref{display:inline-block;margin:14px 0;padding:10px 18px;border-radius:12px;border:1px solid var(--gold);font:600 22px/1 var(--sans);letter-spacing:.06em;color:var(--gold2)}
+.next{text-align:left;margin:24px 0 0;padding:0 0 0 20px;color:var(--mut)}
+.next li{margin:6px 0}
+.sheet{position:fixed;inset:0;z-index:20;background:rgba(3,8,18,.7);display:flex;align-items:flex-end;justify-content:center}
+.sheet>div{width:100%;max-width:640px;background:var(--deep);border:1px solid var(--line2);border-radius:20px 20px 0 0;padding:22px 18px calc(22px + env(safe-area-inset-bottom))}
+.sheet h3{font:600 24px/1.2 var(--serif);margin:0 0 8px}
+.sheet input{font-size:14px}
+.sheet .btns{display:flex;gap:10px;margin-top:14px}
+.offline{background:#4a3410;color:#ffe7b5;text-align:center;font-size:14px;padding:6px 12px}
+
+footer{border-top:1px solid var(--line);padding:22px 0 calc(150px + env(safe-area-inset-bottom));font-size:12.5px;line-height:1.55;color:var(--mut)}
+footer p{margin:0 0 8px}
+footer.home{padding-bottom:40px}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+@media (min-width:700px){.hero h1{font-size:42px}h2{font-size:34px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<noscript><p style="padding:20px">Please turn on JavaScript to complete this application, or call or text Simon Zarour at (201) 484-9544.</p></noscript>
+<div id="offline" class="offline" hidden role="status">You're offline. Your answers are kept on this phone and will save when you reconnect.</div>
+<div id="app"></div>
+<script>
+// ===== My Source Finance — shared application schema (v3, 2026-10-20). Identical copy runs in the browser and in Apps Script. =====
+// Field: {id, l: label, t: type, r: required, o: options, s: show-condition, h: help, ac: autocomplete, ph: placeholder, d: default}
+// Types: text email tel money int pct date month choice select textarea check yesno table
+// Show condition: {f: fieldId, eq: value} | {f, ne: value} | {f, in: [values]} | {f, nz: 1} | {all: [cond, ...]}
+var MSF_SCHEMA_VERSION = 3;
+var MSF_YN = ['Yes', 'No'];
+var MSF_CREDIT = ['760+', '720–759', '680–719', '640–679', 'Below 640', 'Not sure'];
+var MSF_TIMELINE = ['Within 30 days', '30–60 days', '60–90 days', '90+ days', 'Just exploring'];
+var MSF_EXIT = ['Sell the property', 'Refinance into a long-term loan', 'Hold and rent', 'Other'];
+var MSF_ENTITY = ['An LLC / corporation', 'Myself as an individual', 'Not sure yet'];
+var MSF_APP_ALIAS = { multifamily: 'commercial' }; // links sent before Oct 20 keep working
+
+var MSF_F = {
+  // ---------- borrower ----------
+  contact: [
+    { id: 'fullName', l: 'Full legal name', t: 'text', r: 1, ac: 'name' },
+    { id: 'email', l: 'Email', t: 'email', r: 1, ac: 'email' },
+    { id: 'phone', l: 'Mobile phone', t: 'tel', r: 1, ac: 'tel' },
+    { id: 'contactPref', l: 'Best way to reach you', t: 'choice', r: 1, o: ['Phone call', 'Text message', 'Email', 'WhatsApp'] },
+    { id: 'bestTime', l: 'Best time to reach you', t: 'select', o: ['Any time', 'Morning', 'Afternoon', 'Evening'] },
+    { id: 'homeAddress', l: 'Current home address', t: 'text', ac: 'street-address', ph: 'Street, city, state, ZIP' }
+  ],
+  resBorrower: [
+    { id: 'addressYears', l: 'Time at this address', t: 'select', o: ['Under 2 years', '2–5 years', '5+ years'] },
+    { id: 'maritalStatus', l: 'Marital status', t: 'select', o: ['Married', 'Unmarried', 'Separated'] },
+    { id: 'dependents', l: 'Number of dependents', t: 'int' },
+    { id: 'citizenship', l: 'Citizenship', t: 'select', o: ['U.S. citizen', 'Permanent resident', 'Non-permanent resident', 'Foreign national'] },
+    { id: 'firstTime', l: 'First-time home buyer?', t: 'select', o: MSF_YN },
+    { id: 'coBorrower', l: 'Will anyone apply with you (co-borrower)?', t: 'yesno', r: 1 },
+    { id: 'coName', l: 'Co-borrower full name', t: 'text', r: 1, s: { f: 'coBorrower', eq: 'Yes' } },
+    { id: 'coRelation', l: 'Relationship to you', t: 'select', o: ['Spouse', 'Partner', 'Family member', 'Other'], s: { f: 'coBorrower', eq: 'Yes' } },
+    { id: 'coEmail', l: 'Co-borrower email', t: 'email', s: { f: 'coBorrower', eq: 'Yes' } },
+    { id: 'coPhone', l: 'Co-borrower phone', t: 'tel', s: { f: 'coBorrower', eq: 'Yes' } },
+    { id: 'coIncome', l: 'Co-borrower annual income', t: 'money', s: { f: 'coBorrower', eq: 'Yes' } }
+  ],
+  entity: [
+    { id: 'borrowerType', l: 'Who will borrow?', t: 'choice', r: 1, o: MSF_ENTITY },
+    { id: 'entityName', l: 'Legal entity name', t: 'text', r: 1, s: { f: 'borrowerType', eq: 'An LLC / corporation' } },
+    { id: 'entityState', l: 'State of formation', t: 'text', s: { f: 'borrowerType', eq: 'An LLC / corporation' }, ph: 'e.g. New York' },
+    { id: 'entityFormed', l: 'Date formed', t: 'month', s: { f: 'borrowerType', eq: 'An LLC / corporation' } },
+    { id: 'owners', l: 'Owners and ownership %', t: 'table', s: { f: 'borrowerType', eq: 'An LLC / corporation' }, later: 1, max: 8,
+      cols: [{ id: 'name', l: 'Owner name', t: 'text' }, { id: 'pct', l: 'Ownership %', t: 'pct' }, { id: 'title', l: 'Title / role', t: 'text' }, { id: 'signer', l: 'Authorized signer?', t: 'select', o: MSF_YN }, { id: 'guar', l: 'Will guarantee the loan?', t: 'select', o: MSF_YN }] },
+    { id: 'guarantors', l: 'Proposed guarantor(s)', t: 'text', ph: 'Names of everyone who will personally guarantee' }
+  ],
+  commRole: [
+    { id: 'role', l: 'You are the', t: 'select', r: 1, o: ['Borrower', 'Broker', 'Investor', 'Developer', 'Advisor', 'Other'] }
+  ],
+  declarations: [
+    { id: 'decBankruptcy', l: 'Bankruptcy in the last 7 years?', t: 'select', o: MSF_YN },
+    { id: 'decForeclosure', l: 'Foreclosure, short sale or deed-in-lieu in the last 7 years?', t: 'select', o: MSF_YN },
+    { id: 'decJudgments', l: 'Outstanding judgments, liens or lawsuits?', t: 'select', o: MSF_YN },
+    { id: 'decExplain', l: 'If yes, briefly explain', t: 'textarea', s: { any: ['decBankruptcy', 'decForeclosure', 'decJudgments'], eq: 'Yes' } }
+  ],
+  // ---------- residential ----------
+  resLoan: [
+    { id: 'purpose', l: 'Loan purpose', t: 'choice', r: 1, o: ['Purchase', 'Refinance', 'Cash-out refinance', 'Home equity / second mortgage'] },
+    { id: 'propAddress', l: 'Property address', t: 'text', r: 1, ac: 'off', ph: 'Or city and state if you are still shopping' },
+    { id: 'propType', l: 'Property type', t: 'choice', r: 1, o: ['Single-family', 'Condo / co-op', 'Townhouse', '2–4 family', 'Other'] },
+    { id: 'occupancy', l: 'How will you use it?', t: 'choice', r: 1, o: ['Primary residence', 'Second home', 'Investment / rental'] },
+    { id: 'value', l: 'Purchase price or estimated value', t: 'money', r: 1 },
+    { id: 'loanAmt', l: 'Loan amount requested', t: 'money', r: 1 },
+    { id: 'downPayment', l: 'Down payment', t: 'money', s: { f: 'purpose', eq: 'Purchase' } },
+    { id: 'downSource', l: 'Source of down payment', t: 'select', o: ['Savings', 'Sale of current home', 'Gift', 'Retirement funds', 'Other'], s: { f: 'purpose', eq: 'Purchase' } },
+    { id: 'mortBalance', l: 'Current mortgage balance', t: 'money', s: { f: 'purpose', ne: 'Purchase' } },
+    { id: 'closeDate', l: 'Desired closing date', t: 'date' },
+    { id: 'timeline', l: 'When do you need financing?', t: 'select', r: 1, o: MSF_TIMELINE }
+  ],
+  resFin: [
+    { id: 'employment', l: 'Employment', t: 'choice', r: 1, o: ['W-2 employee', 'Self-employed / business owner', 'Retired', 'Other'] },
+    { id: 'employer', l: 'Employer or business name', t: 'text', s: { f: 'employment', in: ['W-2 employee', 'Self-employed / business owner'] }, ac: 'organization' },
+    { id: 'occupation', l: 'Position / occupation', t: 'text', s: { f: 'employment', in: ['W-2 employee', 'Self-employed / business owner'] }, ac: 'organization-title' },
+    { id: 'jobYears', l: 'Time in this line of work', t: 'select', o: ['Under 2 years', '2–5 years', '5+ years'], s: { f: 'employment', in: ['W-2 employee', 'Self-employed / business owner'] } },
+    { id: 'income', l: 'Annual income (before tax)', t: 'money', r: 1 },
+    { id: 'incomeSources', l: 'Other income (bonus, rental, pension…)', t: 'text' },
+    { id: 'cashAssets', l: 'Cash in bank accounts', t: 'money' },
+    { id: 'investAssets', l: 'Retirement and investment accounts', t: 'money' },
+    { id: 'monthlyDebts', l: 'Monthly debt payments (cars, cards, loans)', t: 'money', h: 'Total of the minimum monthly payments' },
+    { id: 'creditRange', l: 'Estimated credit score', t: 'select', r: 1, o: MSF_CREDIT },
+    { id: 'ownsOther', l: 'Do you own other real estate?', t: 'yesno', r: 1 }
+  ],
+  // ---------- commercial $1M–$70M ----------
+  comLoan: [
+    { id: 'purpose', l: 'Loan purpose', t: 'select', r: 1, o: ['Purchase', 'Refinance', 'Cash-out refinance', 'Bridge loan', 'Construction', 'Acquisition / development', 'Working capital', 'Other'] },
+    { id: 'propAddress', l: 'Property address', t: 'text', r: 1, ac: 'off' },
+    { id: 'assetClass', l: 'Property type', t: 'select', r: 1, o: ['Multifamily', 'Mixed-use', 'Retail', 'Office', 'Industrial', 'Hospitality / hotel', 'Nursing home / assisted living / memory care', 'Land / development', 'Special purpose', 'Other'] },
+    { id: 'resUnits', l: 'Residential units', t: 'int' },
+    { id: 'comUnits', l: 'Commercial units', t: 'int' },
+    { id: 'occupiedUnits', l: 'Units occupied today', t: 'int' },
+    { id: 'incomeProducing', l: 'Is the property income-producing?', t: 'select', r: 1, o: ['Yes', 'No', 'Not applicable'] },
+    { id: 'purchaseDate', l: 'When did you buy the property?', t: 'month', s: { f: 'purpose', ne: 'Purchase' } },
+    { id: 'value', l: 'Purchase price', t: 'money', r: 1, h: 'For a refinance, the original purchase price' },
+    { id: 'presentValue', l: 'Estimated current (as-is) value', t: 'money' },
+    { id: 'arv', l: 'Estimated value after renovation (if any)', t: 'money' },
+    { id: 'loanAmt', l: 'Requested financing amount', t: 'money', r: 1 },
+    { id: 'cashAvail', l: 'Down payment / cash available', t: 'money', h: 'For down payment, renovation and closing costs' },
+    { id: 'timeline', l: 'Desired closing timeline', t: 'select', r: 1, o: MSF_TIMELINE }
+  ],
+  comBasis: [
+    { id: 'basisPrice', l: 'Purchase price paid', t: 'money', g: 'basis' },
+    { id: 'basisHard', l: 'Hard costs', t: 'money', g: 'basis' },
+    { id: 'basisSoft', l: 'Soft costs', t: 'money', g: 'basis' },
+    { id: 'basisClosing', l: 'Closing costs', t: 'money', g: 'basis' },
+    { id: 'basisOther', l: 'Other costs', t: 'money', g: 'basis' }
+  ],
+  comDebt: [
+    { id: 'curLender', l: 'Current lender', t: 'text', s: { f: 'purpose', ne: 'Purchase' } },
+    { id: 'existingDebt', l: 'Outstanding loan balance', t: 'money', s: { f: 'purpose', ne: 'Purchase' } },
+    { id: 'curRate', l: 'Current interest rate', t: 'pct', s: { f: 'purpose', ne: 'Purchase' } },
+    { id: 'curPayment', l: 'Current monthly payment', t: 'money', s: { f: 'purpose', ne: 'Purchase' } },
+    { id: 'maturity', l: 'When does the loan come due?', t: 'month', s: { f: 'purpose', ne: 'Purchase' } },
+    { id: 'loanCurrent', l: 'Is the loan current?', t: 'select', o: MSF_YN, s: { f: 'purpose', ne: 'Purchase' } }
+  ],
+  comOps: [
+    { id: 'rentRes', l: 'Current monthly residential rent (all occupied units)', t: 'money', g: 'ops' },
+    { id: 'rentCom', l: 'Current monthly commercial rent', t: 'money', g: 'ops' },
+    { id: 'rentResPro', l: 'Projected monthly residential rent, fully leased', t: 'money', g: 'ops' },
+    { id: 'rentComPro', l: 'Projected monthly commercial rent, fully leased', t: 'money', g: 'ops' },
+    { id: 'otherIncome', l: 'Other monthly income (parking, laundry, storage)', t: 'money', g: 'ops' },
+    { id: 'taxes', l: 'Real estate taxes (per year)', t: 'money', g: 'ops' },
+    { id: 'insurance', l: 'Insurance (per year)', t: 'money', g: 'ops' },
+    { id: 'utilities', l: 'Utilities paid by owner (per year)', t: 'money', g: 'ops' },
+    { id: 'repairs', l: 'Repairs and maintenance (per year)', t: 'money', g: 'ops' },
+    { id: 'otherOpex', l: 'Payroll, management, other expenses (per year)', t: 'money', g: 'ops' },
+    { id: 'hasRentRoll', l: 'Do you have a current rent roll?', t: 'select', o: MSF_YN },
+    { id: 'hasProforma', l: 'Do you have a pro forma with income and expenses?', t: 'select', o: MSF_YN },
+    { id: 'renoUnits', l: 'Apartments to renovate', t: 'int', g: 'reno' },
+    { id: 'renoPerUnit', l: 'Renovation cost per apartment', t: 'money', g: 'reno' },
+    { id: 'renoOther', l: 'Other renovation (roof, common areas, systems)', t: 'money', g: 'reno' }
+  ],
+  sponsor: [
+    { id: 'creditRange', l: 'Estimated credit score (main guarantor)', t: 'select', r: 1, o: MSF_CREDIT },
+    { id: 'liquidity', l: 'Cash and liquid funds available', t: 'money', r: 1, h: 'Bank, brokerage and money-market balances you can document' },
+    { id: 'pfsCash', l: 'Cash', t: 'money', g: 'pfs' },
+    { id: 'pfsBrokerage', l: 'Stocks / brokerage', t: 'money', g: 'pfs' },
+    { id: 'pfsRetire', l: 'Retirement accounts', t: 'money', g: 'pfs' },
+    { id: 'pfsRE', l: 'Real estate (market value)', t: 'money', g: 'pfs' },
+    { id: 'pfsOther', l: 'Other assets', t: 'money', g: 'pfs' },
+    { id: 'pfsMort', l: 'Mortgages owed', t: 'money', g: 'pfs' },
+    { id: 'pfsLiab', l: 'Other debts', t: 'money', g: 'pfs' },
+    { id: 'ownsOther', l: 'Do you (or your entities) own other real estate?', t: 'yesno', r: 1 }
+  ],
+  reo: [
+    { id: 'reo', l: 'Real estate you own now (REO)', t: 'table', s: { f: 'ownsOther', eq: 'Yes' }, later: 1, max: 15,
+      cols: [{ id: 'addr', l: 'Address', t: 'text' }, { id: 'pct', l: 'Your ownership %', t: 'pct' }, { id: 'val', l: 'Estimated value', t: 'money' }, { id: 'debt', l: 'Mortgage balance', t: 'money' }, { id: 'inc', l: 'Monthly rent income', t: 'money' }, { id: 'pmt', l: 'Monthly mortgage payment', t: 'money' }] }
+  ],
+  track: [
+    { id: 'experience', l: 'Similar projects completed in the last 5 years', t: 'choice', r: 1, o: ['None', '1–2', '3–5', '6+'] },
+    { id: 'bio', l: 'Short bio / experience summary', t: 'textarea', ph: 'Your background, roles and notable projects' },
+    { id: 'trackRecord', l: 'Track record — completed projects', t: 'table', s: { f: 'experience', ne: 'None' }, later: 1, max: 15,
+      h: 'Add your most recent projects, or tap “Add these details later”.',
+      cols: [{ id: 'addr', l: 'Property address', t: 'text' }, { id: 'type', l: 'Project type', t: 'select', o: ['Ground-up construction', 'Major renovation', 'Fix and flip', 'Rental / buy and hold', 'Commercial', 'Other'] }, { id: 'role', l: 'Your role', t: 'select', o: ['Owner / sponsor', 'General contractor', 'Owner and GC', 'Partner', 'Other'] }, { id: 'acq', l: 'Acquired', t: 'month' }, { id: 'done', l: 'Completed', t: 'month' }, { id: 'sold', l: 'Sold (if sold)', t: 'month' }, { id: 'cost', l: 'Total project cost', t: 'money' }, { id: 'price', l: 'Sale price / value', t: 'money' }] }
+  ],
+  // ---------- construction (generic ground-up / development) ----------
+  conProp: [
+    { id: 'propAddress', l: 'Project address', t: 'text', r: 1, ac: 'off' },
+    { id: 'landOwned', l: 'Do you own the land now?', t: 'choice', r: 1, o: ['Yes — owned free and clear', 'Yes — with a mortgage', 'No — purchasing it'] },
+    { id: 'titleHolder', l: 'Who holds title now?', t: 'text', ph: 'Person or LLC on the deed' },
+    { id: 'purchaseDate', l: 'Date the land was purchased', t: 'month', s: { f: 'landOwned', ne: 'No — purchasing it' } },
+    { id: 'landValue', l: 'Land purchase price (or contract price)', t: 'money', r: 1 },
+    { id: 'landBasis', l: 'Documented cost basis to date', t: 'money', h: 'Land price plus documented improvements, approvals and site work' },
+    { id: 'presentValue', l: 'Estimated value today (as-is)', t: 'money' },
+    { id: 'existingLiens', l: 'Existing mortgage / liens on the land', t: 'money', s: { f: 'landOwned', eq: 'Yes — with a mortgage' } },
+    { id: 'plat', l: 'Subdivision / site-plan approval', t: 'select', o: ['Approved', 'Pending', 'Not required', 'Not started'] },
+    { id: 'plans', l: 'Architectural plans', t: 'select', r: 1, o: ['Complete', 'In progress', 'Not started'] },
+    { id: 'permits', l: 'Building permits', t: 'select', r: 1, o: ['Permits issued', 'Plans done, permits pending', 'Plans in progress', 'Not started'] },
+    { id: 'utilities', l: 'Utilities available at the site', t: 'check', o: ['Public sewer', 'Septic', 'Public water', 'Well water', 'Gas', 'Electric'] },
+    { id: 'loanAmt', l: 'Total loan amount requested', t: 'money', r: 1 },
+    { id: 'holdback', l: 'Construction holdback requested', t: 'money', h: 'Portion of the loan released in draws as you build' },
+    { id: 'cashOut', l: 'Cash-out at closing, if any', t: 'money' },
+    { id: 'term', l: 'Loan term', t: 'select', r: 1, o: ['12 months', '18 months', '24 months', '36 months', 'Other / not sure'] },
+    { id: 'exit', l: 'Exit strategy', t: 'choice', r: 1, o: MSF_EXIT },
+    { id: 'exitDate', l: 'Expected sale / refinance date', t: 'month' },
+    { id: 'timeline', l: 'When do you need to close?', t: 'select', r: 1, o: MSF_TIMELINE }
+  ],
+  conProject: [
+    { id: 'projType', l: 'Project type', t: 'choice', r: 1, o: ['New single-family home', 'New 2–4 family', 'New multifamily / mixed-use', 'Major renovation / addition', 'Other'] },
+    { id: 'sqft', l: 'Proposed building area (sq ft)', t: 'int' },
+    { id: 'units', l: 'Number of units', t: 'int' },
+    { id: 'buildMonths', l: 'Construction duration (months)', t: 'int' },
+    { id: 'startDate', l: 'Proposed start date', t: 'month' },
+    { id: 'hardCosts', l: 'Hard construction costs', t: 'money', r: 1, g: 'bud' },
+    { id: 'siteCosts', l: 'Site work and utility costs', t: 'money', g: 'bud' },
+    { id: 'softCosts', l: 'Soft costs (plans, permits, fees)', t: 'money', g: 'bud' },
+    { id: 'contingency', l: 'Contingency', t: 'money', g: 'bud' },
+    { id: 'interestReserve', l: 'Interest reserve', t: 'money', g: 'bud' },
+    { id: 'budget', l: 'Total development budget', t: 'money', r: 1, h: 'Filled in from the lines above — change it if needed' },
+    { id: 'invested', l: 'Amount you have already invested', t: 'money' },
+    { id: 'arv', l: 'Estimated value when completed', t: 'money', r: 1 },
+    { id: 'comps', l: 'Comparable sales supporting the value', t: 'table', later: 1, max: 8,
+      cols: [{ id: 'addr', l: 'Address', t: 'text' }, { id: 'price', l: 'Sale price', t: 'money' }, { id: 'date', l: 'Sale date', t: 'month' }, { id: 'sqft', l: 'Sq ft', t: 'int' }] },
+    { id: 'gc', l: 'General contractor — legal name', t: 'text', r: 1, ph: 'Write “Self” if you are the GC' },
+    { id: 'gcLicense', l: 'GC license number and state', t: 'text' },
+    { id: 'gcInsurance', l: 'GC liability insurance', t: 'select', o: ['In place', 'In progress', 'No', 'Not sure'] },
+    { id: 'sponsorRole', l: 'Your role on the project', t: 'select', r: 1, o: ['Owner / developer only', 'Owner and general contractor', 'Owner with a third-party GC and project manager'] }
+  ],
+  // ---------- private / fix & flip investor programs ----------
+  pvtProp: [
+    { id: 'purpose', l: 'Loan type', t: 'choice', r: 1, o: ['Fix and flip', 'Bridge', 'Purchase (rental)', 'Rate / term refinance', 'Cash-out refinance', 'Long-term rental (DSCR)'] },
+    { id: 'propAddress', l: 'Property address', t: 'text', r: 1, ac: 'off' },
+    { id: 'propType', l: 'Property type', t: 'choice', r: 1, o: ['Single-family', '2–4 family', 'Condo', '5–10 units', 'Mixed-use', 'Other'] },
+    { id: 'ownerOcc', l: 'Will you or your family live in it?', t: 'yesno', r: 1, h: 'These programs are for investment properties only' },
+    { id: 'purchaseDate', l: 'Date acquired', t: 'month', s: { f: 'purpose', in: ['Bridge', 'Rate / term refinance', 'Cash-out refinance', 'Long-term rental (DSCR)'] } },
+    { id: 'basis', l: 'Documented cost basis (price + improvements)', t: 'money', s: { f: 'purpose', in: ['Bridge', 'Rate / term refinance', 'Cash-out refinance'] } },
+    { id: 'value', l: 'Purchase price or current value', t: 'money', r: 1 },
+    { id: 'existingLiens', l: 'Existing loan payoff', t: 'money', s: { f: 'purpose', in: ['Bridge', 'Rate / term refinance', 'Cash-out refinance', 'Long-term rental (DSCR)'] } },
+    { id: 'loanAmt', l: 'Loan amount requested', t: 'money', r: 1 },
+    { id: 'cashOut', l: 'Cash-out requested', t: 'money', s: { f: 'purpose', in: ['Bridge', 'Cash-out refinance'] } },
+    { id: 'rehab', l: 'Renovation budget', t: 'money', s: { f: 'purpose', in: ['Fix and flip', 'Bridge', 'Purchase (rental)'] } },
+    { id: 'arv', l: 'After-repair value (ARV)', t: 'money', s: { f: 'purpose', in: ['Fix and flip', 'Bridge', 'Purchase (rental)'] } },
+    { id: 'rentNow', l: 'Current or market monthly rent', t: 'money', s: { f: 'purpose', in: ['Purchase (rental)', 'Rate / term refinance', 'Cash-out refinance', 'Long-term rental (DSCR)'] } },
+    { id: 'leased', l: 'Lease in place?', t: 'select', o: ['Fully leased', 'Partly leased', 'Vacant'], s: { f: 'purpose', in: ['Purchase (rental)', 'Rate / term refinance', 'Cash-out refinance', 'Long-term rental (DSCR)'] } },
+    { id: 'str', l: 'Short-term rental (Airbnb-type)?', t: 'select', o: MSF_YN, s: { f: 'purpose', in: ['Purchase (rental)', 'Rate / term refinance', 'Cash-out refinance', 'Long-term rental (DSCR)'] } },
+    { id: 'hoa', l: 'HOA dues (monthly), if any', t: 'money' },
+    { id: 'term', l: 'Term needed', t: 'select', r: 1, o: ['6–12 months', '12–24 months', '30-year', 'Other / not sure'] },
+    { id: 'interestOnly', l: 'Interest-only payments preferred?', t: 'select', o: ['Yes', 'No', 'Not sure'] },
+    { id: 'prepay', l: 'Need prepayment flexibility?', t: 'select', o: ['Yes', 'No', 'Not sure'], s: { f: 'purpose', in: ['Purchase (rental)', 'Rate / term refinance', 'Cash-out refinance', 'Long-term rental (DSCR)'] } },
+    { id: 'exit', l: 'Exit strategy', t: 'choice', r: 1, o: MSF_EXIT },
+    { id: 'timeline', l: 'When do you need to close?', t: 'select', r: 1, o: MSF_TIMELINE }
+  ],
+  // ---------- Calculate My Deal (all optional; defaults follow the original MSF Investment Calculator) ----------
+  calcRes: [
+    { id: 'cRate', l: 'Estimated interest rate', t: 'pct', ph: '7.00' },
+    { id: 'cYears', l: 'Loan term (years)', t: 'int', d: '30' },
+    { id: 'cTaxes', l: 'Property taxes (per year)', t: 'money' },
+    { id: 'cIns', l: 'Homeowners insurance (per year)', t: 'money' },
+    { id: 'cHoa', l: 'HOA / common charges (per month)', t: 'money' },
+    { id: 'cClosePct', l: 'Estimated closing costs (% of loan)', t: 'pct', d: '3' }
+  ],
+  calcCom: [
+    { id: 'cRate', l: 'Estimated interest rate', t: 'pct', ph: '7.25' },
+    { id: 'cYears', l: 'Amortization (years)', t: 'int', d: '30' },
+    { id: 'cIO', l: 'Interest-only payments?', t: 'select', o: ['No', 'Yes'], d: 'No' },
+    { id: 'cBasis', l: 'Analyze on current or projected rent?', t: 'select', o: ['Current', 'Projected'], d: 'Current' },
+    { id: 'cMgmtPct', l: 'Management fee (% of effective gross income)', t: 'pct', d: '5' },
+    { id: 'cReserves', l: 'Replacement reserves per unit per year', t: 'money', d: '300' },
+    { id: 'cContPct', l: 'Renovation contingency', t: 'pct', d: '10' },
+    { id: 'cClosePct', l: 'Estimated closing costs (% of loan)', t: 'pct', d: '3' },
+    { id: 'cVacPct', l: 'Vacancy and credit-loss allowance', t: 'pct', d: '5' },
+    { id: 'cMaxLtv', l: 'Maximum loan-to-value (LTV)', t: 'pct', d: '75' },
+    { id: 'cMinDscr', l: 'Minimum DSCR', t: 'text', d: '1.25' },
+    { id: 'cMaxLtc', l: 'Maximum loan-to-cost (LTC)', t: 'pct', d: '80' }
+  ],
+  calcCon: [
+    { id: 'cRate', l: 'Estimated interest rate', t: 'pct', ph: '10.50' },
+    { id: 'cClosePct', l: 'Closing costs and points (% of loan)', t: 'pct', d: '3' },
+    { id: 'cDrawPct', l: 'Average balance drawn during the build', t: 'pct', d: '50', h: 'Interest is usually paid only on funds drawn; 50% is a common estimate' },
+    { id: 'cSellPct', l: 'Selling costs at exit (% of value)', t: 'pct', d: '6' }
+  ],
+  calcPvt: [
+    { id: 'cRate', l: 'Estimated interest rate', t: 'pct', ph: '10.00' },
+    { id: 'cYears', l: 'Amortization (years, rental loans)', t: 'int', d: '30' },
+    { id: 'cMonths', l: 'Holding period (months, flip / bridge)', t: 'int', d: '12' },
+    { id: 'cClosePct', l: 'Closing costs and points (% of loan)', t: 'pct', d: '3' },
+    { id: 'cCarry', l: 'Taxes, insurance, utilities (per month)', t: 'money' },
+    { id: 'cSellPct', l: 'Selling costs at exit (% of value)', t: 'pct', d: '6' },
+    { id: 'cTaxes', l: 'Property taxes (per year, rental)', t: 'money' },
+    { id: 'cIns', l: 'Insurance (per year, rental)', t: 'money' }
+  ],
+  // ---------- documents (categories) ----------
+  docs: {
+    residential: [['id', 'Photo ID'], ['income', 'Income — pay stubs, W-2s or tax returns'], ['bank', 'Bank statements (last 2 months)'], ['contract', 'Purchase contract'], ['mortgage', 'Current mortgage statement'], ['other', 'Anything else']],
+    commercial: [['rentroll', 'Rent roll'], ['proforma', 'Pro forma / operating statement (income and expenses)'], ['closingstmt', 'Purchase closing statement'], ['basis', 'Cost basis breakdown'], ['mortgage', 'Current mortgage statement'], ['bio', 'Borrower bio / resume'], ['pfs', 'Personal financial statement'], ['reo', 'REO schedule'], ['taxreturns', 'Tax returns'], ['entity', 'Entity documents'], ['contract', 'Purchase contract'], ['budget', 'Construction / renovation budget and plans'], ['other', 'Anything else']],
+    construction: [['plans', 'Architectural plans'], ['budget', 'Budget / schedule of values'], ['survey', 'Survey'], ['plat', 'Site-plan / subdivision approval'], ['permits', 'Permits'], ['comps', 'Comparable sales'], ['basis', 'Closing statement and receipts (cost basis)'], ['entity', 'Entity documents'], ['liquidity', 'Bank / brokerage statements'], ['track', 'Track record / experience sheet'], ['other', 'Anything else']],
+    private: [['id', 'Photo ID'], ['contract', 'Purchase contract'], ['budget', 'Renovation budget / scope of work'], ['lease', 'Lease / rent roll'], ['appraisal', 'Appraisal (if available)'], ['payoff', 'Mortgage statement / payoff letter'], ['insurance', 'Insurance quote'], ['entity', 'Entity documents'], ['liquidity', 'Bank / brokerage statements'], ['track', 'Track record / experience sheet'], ['other', 'Anything else']]
+  },
+  notes: [{ id: 'notes', l: 'Anything else Simon should know?', t: 'textarea' }]
+};
+
+var MSF_APPS = {
+  residential: { title: 'Residential Mortgage', short: 'Residential Mortgage', blurb: 'Purchase, refinance, cash-out or home equity — homes and 1–4 family.', minutes: 6,
+    screens: [
+      { id: 'borrower', n: 'About you', fields: MSF_F.contact.concat(MSF_F.resBorrower) },
+      { id: 'loan', n: 'Property and loan', fields: MSF_F.resLoan },
+      { id: 'fin', n: 'Income, assets and declarations', fields: MSF_F.resFin.concat(MSF_F.reo, MSF_F.declarations) },
+      { id: 'calc', n: 'Calculate my payment', fields: MSF_F.calcRes },
+      { id: 'docs', n: 'Documents' },
+      { id: 'review', n: 'Review and submit' }
+    ] },
+  commercial: { title: 'Commercial Loan ($1M–$70M)', short: 'Commercial', blurb: 'Multifamily, mixed-use, retail, office, industrial, hospitality, nursing homes and other commercial property.', minutes: 8,
+    screens: [
+      { id: 'borrower', n: 'Borrower and entity', fields: MSF_F.contact.concat(MSF_F.commRole, MSF_F.entity) },
+      { id: 'loan', n: 'Property and loan', fields: MSF_F.comLoan.concat(MSF_F.comDebt) },
+      { id: 'fin', n: 'Income, expenses and cost basis', fields: MSF_F.comOps.concat(MSF_F.comBasis) },
+      { id: 'project', n: 'Sponsor, PFS and REO', fields: MSF_F.sponsor.concat(MSF_F.reo, MSF_F.track) },
+      { id: 'calc', n: 'Calculate my deal', fields: MSF_F.calcCom },
+      { id: 'docs', n: 'Documents' },
+      { id: 'review', n: 'Review and submit' }
+    ] },
+  construction: { title: 'Construction Financing', short: 'Construction Financing', blurb: 'Ground-up construction and development financing.', minutes: 8,
+    screens: [
+      { id: 'borrower', n: 'Borrower and entity', fields: MSF_F.contact.concat(MSF_F.entity) },
+      { id: 'loan', n: 'Land and financing', fields: MSF_F.conProp },
+      { id: 'project', n: 'Project, budget and team', fields: MSF_F.conProject },
+      { id: 'fin', n: 'Financial strength and experience', fields: MSF_F.sponsor.concat(MSF_F.reo, MSF_F.track) },
+      { id: 'calc', n: 'Calculate my deal', fields: MSF_F.calcCon },
+      { id: 'docs', n: 'Documents' },
+      { id: 'review', n: 'Review and submit' }
+    ] },
+  private: { title: 'Private / Fix & Flip', short: 'Private / Fix & Flip', blurb: 'Investor loans: purchase, refinance, bridge, fix-and-flip and rentals.', minutes: 7,
+    screens: [
+      { id: 'borrower', n: 'Borrower and entity', fields: MSF_F.contact.concat(MSF_F.entity) },
+      { id: 'loan', n: 'Property and loan', fields: MSF_F.pvtProp },
+      { id: 'fin', n: 'Financial strength and experience', fields: MSF_F.sponsor.concat(MSF_F.reo, MSF_F.track, MSF_F.declarations) },
+      { id: 'calc', n: 'Calculate my deal', fields: MSF_F.calcPvt },
+      { id: 'docs', n: 'Documents' },
+      { id: 'review', n: 'Review and submit' }
+    ] }
+};
+
+var MSF_SENSITIVE = ['ssn', 'dob', 'coSsn', 'coDob']; // never collected; stripped before sending
+var MSF_CONSENTS = {
+  hardPull: 'Optional: I agree that a lender may later run a full (“hard”) credit inquiry — but only after Simon contacts me, names the specific lender, and I confirm. Submitting this application does not trigger any credit inquiry.',
+  consent: 'I confirm this information is accurate to the best of my knowledge. I understand this is a preliminary application only — not a loan approval or a commitment to lend — and I agree to be contacted by Simon Zarour / Alpine Mortgage Services LLC by phone, text or email about my request.'
+};
+var MSF_DISCLOSURE = 'My Source Finance · Simon Zarour, NMLS #2684220 · Powered by Alpine Mortgage Services, LLC, NMLS #56905 · Equal Housing Opportunity';
+var MSF_CALC_NOTE = 'All calculations and financing estimates are preliminary, subject to verification, lender underwriting, applicable licensing requirements, and final approval. They do not constitute a loan commitment, a financing offer or an investment guarantee.';
+
+function msfApp(k) { return MSF_APPS[k] ? k : (MSF_APP_ALIAS[k] && MSF_APPS[MSF_APP_ALIAS[k]] ? MSF_APP_ALIAS[k] : ''); }
+function msfFields(app) {
+  var out = [], seen = {};
+  MSF_APPS[app].screens.forEach(function (s) { (s.fields || []).forEach(function (f) { if (!seen[f.id]) { seen[f.id] = 1; out.push(f); } }); });
+  return out.concat(MSF_F.notes);
+}
+function msfShown(f, d) { return f.s ? msfCond(f.s, d) : true; }
+function msfCond(c, d) {
+  if (c.all) { for (var i = 0; i < c.all.length; i++) if (!msfCond(c.all[i], d)) return false; return true; }
+  if (c.any) { for (var j = 0; j < c.any.length; j++) if (String(d[c.any[j]] || '') === c.eq) return true; return false; }
+  var v = d[c.f] == null ? '' : String(d[c.f]);
+  if ('eq' in c) return v === c.eq;
+  if ('ne' in c) return v !== '' && v !== c.ne;
+  if ('in' in c) return c['in'].indexOf(v) >= 0;
+  if ('nz' in c) return Number(String(v).replace(/[^\d.]/g, '')) > 0;
+  return true;
+}
+function msfNum(v) { var n = Number(String(v == null ? '' : v).replace(/[$,%x\s]/g, '')); return isFinite(n) ? n : 0; }
+function msfHas(v) { return v !== undefined && v !== null && String(v).trim() !== ''; }
+
+// Small estimates shown inside the form (PFS totals, budget totals)
+function msfCalc(app, d) {
+  var o = {}, n = msfNum;
+  var pfsA = n(d.pfsCash) + n(d.pfsBrokerage) + n(d.pfsRetire) + n(d.pfsRE) + n(d.pfsOther), pfsL = n(d.pfsMort) + n(d.pfsLiab);
+  if (pfsA || pfsL) { o.totalAssets = pfsA; o.totalLiabilities = pfsL; o.netWorth = pfsA - pfsL; }
+  if (app === 'construction') {
+    var lines = n(d.hardCosts) + n(d.siteCosts) + n(d.softCosts) + n(d.contingency) + n(d.interestReserve);
+    if (lines) o.budgetLines = lines;
+    if (n(d.hardCosts) && msfHas(d.contingency)) o.contingencyPct = n(d.contingency) / n(d.hardCosts);
+  }
+  if (app === 'commercial') {
+    var b = n(d.basisPrice) + n(d.basisHard) + n(d.basisSoft) + n(d.basisClosing) + n(d.basisOther);
+    if (b) o.totalBasis = b;
+    var ru = n(d.resUnits) + n(d.comUnits);
+    if (ru) { o.totalUnits = ru; if (msfHas(d.occupiedUnits)) o.occupancy = Math.min(1, n(d.occupiedUnits) / ru); }
+    var opex = n(d.taxes) + n(d.insurance) + n(d.utilities) + n(d.repairs) + n(d.otherOpex);
+    if (opex) o.totalOpex = opex;
+    var reno = n(d.renoUnits) * n(d.renoPerUnit) + n(d.renoOther);
+    if (reno) o.totalReno = reno;
+  }
+  return o;
+}
+var MSF_CALC_LABELS = { totalAssets: ['Total assets', '$'], totalLiabilities: ['Total liabilities', '$'], netWorth: ['Net worth', '$'], budgetLines: ['Budget lines added up', '$'], contingencyPct: ['Contingency as % of hard costs', '%'], totalBasis: ['Total cost basis', '$'], totalUnits: ['Total units', '#'], occupancy: ['Occupancy', '%'], totalOpex: ['Total annual operating expenses', '$'], totalReno: ['Total estimated renovation', '$'] };
+function msfFmt(u, v) {
+  if (v === null || v === undefined || (typeof v === 'number' && !isFinite(v))) return '—';
+  if (typeof v === 'string') return v;
+  if (u === '$') return (v < 0 ? '−$' : '$') + Math.round(Math.abs(v)).toLocaleString('en-US');
+  if (u === '%') { var pv = Math.round(v * 10000) / 100; return (pv % 1 && Math.round(pv * 10) !== pv * 10 ? pv.toFixed(2) : pv.toFixed(1)) + '%'; }
+  if (u === 'x') return v.toFixed(2) + 'x';
+  if (u === 'mo') return Math.round(v) + ' months';
+  return Math.round(v).toLocaleString('en-US');
+}
+function msfFmtCalc(k, v) { return msfFmt(MSF_CALC_LABELS[k][1], v); }
+
+// ---------- Calculate My Deal — same formulas as the original "MSF — Investment Calculator" workbook ----------
+function msfPmt(rate, years, loan, io) {
+  if (loan <= 0) return 0;
+  if (io) return loan * rate / 12;
+  if (!rate) return years > 0 ? loan / (years * 12) : 0;
+  var r = rate / 12, n = years * 12; return loan * r / (1 - Math.pow(1 + r, -n));
+}
+function msfPv(rate, years, payment) { if (!rate) return payment * years * 12; var r = rate / 12, n = years * 12; return payment * (1 - Math.pow(1 + r, -n)) / r; }
+function msfDef(d, id, dflt) { return msfHas(d[id]) ? d[id] : dflt; }
+function msfDeal(app, d) {
+  var n = msfNum, P = function (id, dflt) { return n(msfDef(d, id, dflt)) / 100; };
+  var rate = P('cRate', ''), S = [], T = [];
+  function sec(title, rows) { rows = rows.filter(function (r) { return r[1] !== null && r[1] !== undefined && !(typeof r[1] === 'number' && !isFinite(r[1])); }); if (rows.length) S.push({ t: title, rows: rows }); }
+  if (app === 'commercial') {
+    // Inputs (sheet "Inputs") -> Analysis -> Dashboard
+    var price = n(d.value), asis = n(d.presentValue), resU = n(d.resUnits), comU = n(d.comUnits), units = resU + comU;
+    var projected = msfDef(d, 'cBasis', 'Current') === 'Projected';
+    var gross = (projected ? n(d.rentResPro) + n(d.rentComPro) : n(d.rentRes) + n(d.rentCom)) * 12;
+    var other = n(d.otherIncome) * 12, vac = -gross * P('cVacPct', 5), egi = gross + other + vac;
+    var fixed = n(d.taxes) + n(d.insurance) + n(d.utilities) + n(d.repairs) + n(d.otherOpex);
+    var mgmt = egi * P('cMgmtPct', 5), reserves = units * n(msfDef(d, 'cReserves', 300)), opex = fixed + mgmt + reserves, noi = egi - opex;
+    var ltvValue = price > 0 && asis > 0 ? Math.min(price, asis) : Math.max(price, asis);
+    var loan = n(d.loanAmt), years = n(msfDef(d, 'cYears', 30)), io = msfDef(d, 'cIO', 'No') === 'Yes';
+    var pmt = msfPmt(rate, years, loan, io), ds = pmt * 12, dscr = ds > 0 ? noi / ds : 0, ltv = ltvValue > 0 ? loan / ltvValue : 0;
+    var reno = (n(d.renoUnits) * n(d.renoPerUnit) + n(d.renoOther)) * (1 + P('cContPct', 10)), closing = loan * P('cClosePct', 3);
+    var cost = price + reno + closing, ltc = cost > 0 ? loan / cost : 0, need = Math.max(0, cost - loan), gap = Math.max(0, need - n(d.cashAvail));
+    var cf = noi - ds, coc = need > 0 ? cf / need : 0;
+    var minD = n(msfDef(d, 'cMinDscr', 1.25)), maxL = P('cMaxLtv', 75), maxC = P('cMaxLtc', 80);
+    var byLtv = ltvValue * maxL, byDscr = (minD <= 0 || noi <= 0 || rate <= 0) ? 0 : (io ? (noi / minD) / rate : msfPv(rate, years, noi / minD / 12)), byLtc = (price + reno) * maxC;
+    sec('Property performance', [['Gross rental income (' + (projected ? 'projected' : 'current') + ')', gross, '$'], ['Vacancy allowance', vac, '$'], ['Effective gross income', egi, '$'], ['Operating expenses (incl. management and reserves)', opex, '$'], ['Net operating income (NOI)', noi, '$'], ['Capitalization rate', price > 0 ? noi / price : null, '%']]);
+    if (loan > 0) {
+      sec('Estimated financing', [['Requested loan', loan, '$'], ['Interest rate', rate || null, '%'], ['Monthly payment', rate ? pmt : null, '$'], ['Annual debt service', rate ? ds : null, '$'], ['Loan-to-value (LTV)', ltvValue ? ltv : null, '%'], ['DSCR', rate && ds ? dscr : null, 'x']]);
+      sec('Cash required', [['Purchase price', price, '$'], ['Renovation (incl. contingency)', reno, '$'], ['Closing costs (estimate)', closing, '$'], ['Total project cost', cost, '$'], ['Total required investment', need, '$'], ['Cash available', msfHas(d.cashAvail) ? n(d.cashAvail) : null, '$'], ['Estimated financing gap', msfHas(d.cashAvail) ? gap : null, '$']]);
+      sec('Annual return', [['Annual cash flow', rate ? cf : null, '$'], ['Cash-on-cash return', rate && need ? coc : null, '%'], ['Loan-to-cost (LTC)', cost ? ltc : null, '%']]);
+      if (rate) {
+        T = [['DSCR vs. minimum', dscr >= minD ? 'Meets' : 'Below minimum'], ['LTV vs. maximum', ltv <= maxL ? 'Meets' : 'Above maximum'], ['LTC vs. maximum', ltc <= maxC ? 'Meets' : 'Above maximum'], ['Cash available vs. needed', msfHas(d.cashAvail) ? (gap <= 0 ? 'Covered' : 'Shortfall') : 'Enter cash available'], ['Cash flow after debt service', cf >= 0 ? 'Positive' : 'Negative']];
+        sec('Preliminary lending assessment', [['Indicative supportable loan (lowest of LTV, DSCR and LTC limits)', Math.max(0, Math.min(byLtv, byDscr, byLtc)), '$']]);
+      }
+    }
+  } else if (app === 'residential') {
+    var v = n(d.value), L = n(d.loanAmt), yrs = n(msfDef(d, 'cYears', 30)), pi = msfPmt(rate, yrs, L, false);
+    var escrow = n(d.cTaxes) / 12 + n(d.cIns) / 12 + n(d.cHoa), housing = pi + escrow, inc = (n(d.income) + n(d.coIncome)) / 12;
+    var down = d.purpose === 'Purchase' ? (msfHas(d.downPayment) ? n(d.downPayment) : Math.max(0, v - L)) : 0, cc = L * P('cClosePct', 3);
+    sec('Your estimated payment', [['Loan amount', L, '$'], ['Loan-to-value (LTV)', v ? L / v : null, '%'], ['Principal and interest (monthly)', rate ? pi : null, '$'], ['Taxes, insurance and HOA (monthly)', escrow || null, '$'], ['Total monthly housing payment', rate ? housing : null, '$']]);
+    sec('Cash and affordability', [['Down payment', d.purpose === 'Purchase' ? down : null, '$'], ['Closing costs (estimate)', L ? cc : null, '$'], ['Estimated cash to close', d.purpose === 'Purchase' ? down + cc : null, '$'], ['Debt-to-income (DTI)', rate && inc ? (housing + n(d.monthlyDebts)) / inc : null, '%']]);
+  } else if (app === 'construction') {
+    var basis = n(d.landBasis) || n(d.landValue), budget = n(d.budget), L2 = n(d.loanAmt), months = n(d.buildMonths) || 12;
+    var cc2 = L2 * P('cClosePct', 3), interest = n(d.interestReserve) ? 0 : L2 * rate * months / 12 * P('cDrawPct', 50);
+    var total = basis + budget + cc2 + interest, arv = n(d.arv), net = arv * (1 - P('cSellPct', 6)), profit = net - total, equity = Math.max(0, total - L2);
+    sec('Project cost', [['Land / cost basis', basis, '$'], ['Development budget', budget, '$'], ['Closing costs and points (estimate)', cc2, '$'], ['Carrying interest during the build (estimate)', interest || null, '$'], ['Total project cost', total, '$']]);
+    sec('Financing', [['Requested loan', L2, '$'], ['Loan-to-cost (LTC)', total ? L2 / total : null, '%'], ['Loan-to-completed-value', arv ? L2 / arv : null, '%'], ['Your equity required', equity, '$']]);
+    if (arv) sec('Projected exit', [['Estimated completed value', arv, '$'], ['Net after selling costs', net, '$'], ['Projected profit', profit, '$'], ['Return on project cost', total ? profit / total : null, '%'], ['Return on your equity', equity ? profit / equity : null, '%']]);
+  } else if (app === 'private') {
+    var flip = ['Fix and flip', 'Bridge'].indexOf(d.purpose) >= 0;
+    var v2 = n(d.value), L3 = n(d.loanAmt);
+    if (flip || n(d.rehab)) {
+      var mo = n(msfDef(d, 'cMonths', 12)), int2 = L3 * rate * mo / 12, cc3 = L3 * P('cClosePct', 3), carry = n(d.cCarry) * mo;
+      var tot = v2 + n(d.rehab) + cc3 + int2 + carry, arv2 = n(d.arv), net2 = arv2 * (1 - P('cSellPct', 6)), pr = net2 - tot, cash = Math.max(0, tot - L3);
+      sec('Total project cost', [['Purchase price / value', v2, '$'], ['Renovation', n(d.rehab) || null, '$'], ['Closing costs and points', cc3, '$'], ['Interest while holding (' + mo + ' months)', rate ? int2 : null, '$'], ['Taxes, insurance, utilities while holding', carry || null, '$'], ['Total project cost', tot, '$']]);
+      sec('Financing', [['Requested loan', L3, '$'], ['Loan-to-cost (LTC)', tot ? L3 / tot : null, '%'], ['Loan-to-ARV', arv2 ? L3 / arv2 : null, '%'], ['Cash required', cash, '$']]);
+      if (arv2) sec('Projected profit', [['After-repair value', arv2, '$'], ['Net after selling costs', net2, '$'], ['Projected profit', pr, '$'], ['Return on cash invested', cash ? pr / cash : null, '%']]);
+    }
+    if (!flip && n(d.rentNow)) {
+      var yrs3 = n(msfDef(d, 'cYears', 30)), io3 = d.interestOnly === 'Yes', pi3 = msfPmt(rate, yrs3, L3, io3);
+      var pitia = pi3 + n(d.cTaxes) / 12 + n(d.cIns) / 12 + n(d.hoa), dscr3 = pitia ? n(d.rentNow) / pitia : 0;
+      sec('Rental cash flow (DSCR)', [['Monthly rent', n(d.rentNow), '$'], ['Principal and interest' + (io3 ? ' (interest-only)' : ''), rate ? pi3 : null, '$'], ['Taxes, insurance and HOA (monthly)', (n(d.cTaxes) + n(d.cIns)) / 12 + n(d.hoa) || null, '$'], ['Total payment (PITIA)', rate ? pitia : null, '$'], ['DSCR (rent ÷ PITIA)', rate && pitia ? dscr3 : null, 'x'], ['Monthly cash flow', rate ? n(d.rentNow) - pitia : null, '$'], ['Loan-to-value (LTV)', v2 ? L3 / v2 : null, '%']]);
+    }
+  }
+  return { sections: S, tests: T, ready: S.length > 0 };
+}
+
+// Map answers from earlier versions of the forms to current field ids.
+function msfMigrate(app, d) {
+  d = d || {}; var o = {}; Object.keys(d).forEach(function (k) { o[k] = d[k]; });
+  if (o.propCity && !o.propAddress) o.propAddress = o.propCity;
+  if (o.purpose === 'Refinance (lower rate / term)') o.purpose = 'Refinance';
+  if (app === 'residential' && o.downOrBal) { if (o.purpose === 'Purchase') o.downPayment = o.downOrBal; else o.mortBalance = o.downOrBal; }
+  if (o.borrowerType === 'An individual') o.borrowerType = 'Myself as an individual';
+  if (o.exit === 'Sell') o.exit = 'Sell the property';
+  if (o.exit === 'Refinance to long-term loan') o.exit = 'Refinance into a long-term loan';
+  if (app === 'commercial') {
+    if (o.units && !o.resUnits) o.resUnits = o.units;
+    if (o.rents && !o.rentRes) o.rentRes = String(Math.round(msfNum(o.rents) / 12));
+    if (o.assetClass === 'Multifamily (5+ units)') o.assetClass = 'Multifamily';
+    if (o.reno && !o.renoOther) o.renoOther = o.reno;
+  }
+  if (app === 'private' && o.purpose === 'Purchase') o.purpose = 'Purchase (rental)';
+  if (app === 'private' && o.purpose === 'Refinance') o.purpose = 'Rate / term refinance';
+  if (o.timeline === '1–3 months') o.timeline = '30–60 days';
+  if (o.timeline === '3–6 months') o.timeline = '90+ days';
+  ['propCity', 'downOrBal', 'units', 'rents', 'reno', 'docs'].forEach(function (k) { delete o[k]; });
+  return o;
+}
+
+</script>
+<script>
+(function () {
+'use strict';
+var API = 'https://script.google.com/macros/s/AKfycbxQqhIBYSsoEFS1nZtHrLd9if1LxI_rZ5P3Ag4SuDMp0Gbr9Zp5MQ7istKgDPvzqx4bYg/exec';
+var PHONE = '(201) 484-9544';
+var FOOT = '<p>' + MSF_DISCLOSURE + '</p><p>Questions: call or text <a href="tel:+12014849544">' + PHONE + '</a></p>';
+var LOCK = '<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="#8fd3a8" stroke-width="1.8" d="M6 10V8a6 6 0 0 1 12 0v2M5 10h14v11H5z"/><circle cx="12" cy="15.5" r="1.6" fill="#8fd3a8"/></svg>';
+
+var $ = function (s, r) { return (r || document).querySelector(s); };
+var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+function ls(k, v) { try { if (v === undefined) return localStorage.getItem(k) || ''; if (v) localStorage.setItem(k, v); else localStorage.removeItem(k); } catch (e) { return ''; } }
+function money(v) { var n = String(v || '').replace(/[^\d.]/g, ''); if (!n) return ''; var p = n.split('.'); return Number(p[0]).toLocaleString('en-US') + (p.length > 1 ? '.' + p[1].slice(0, 2) : ''); }
+function kb(n) { n = Number(n || 0); return n > 1048576 ? (n / 1048576).toFixed(1) + ' MB' : Math.max(1, Math.round(n / 1024)) + ' KB'; }
+
+var q = new URLSearchParams(location.search);
+var FOLDER_APP = (document.querySelector('meta[name=msf-app]') || {}).content || ''; // set only in /msf/<app>/ pages
+var RAW_APP = q.get('app') || FOLDER_APP;
+var DSCR = RAW_APP === 'dscr'; // standalone DSCR calculator: nothing saved or sent
+var APP = DSCR ? 'commercial' : msfApp(RAW_APP);
+var MF = RAW_APP === 'multifamily' && APP === 'commercial'; // Multifamily link: commercial form, Multifamily preselected
+var DOC_TITLES = { residential: 'Residential Mortgage Application', commercial: 'Commercial Loan Application', construction: 'Construction Financing Application', private: 'Private / Fix & Flip Application', multifamily: 'Multifamily Loan Application', dscr: 'DSCR Calculator' };
+function setDocTitle() { var k = DSCR ? 'dscr' : MF ? 'multifamily' : APP; document.title = k && DOC_TITLES[k] ? DOC_TITLES[k] + ' — My Source Finance' : 'My Source Finance — Loan Applications'; }
+function appTitle(k) { if (DSCR) return 'DSCR Calculator'; return MF && k === 'commercial' ? 'Multifamily Loan (5+ units)' : MSF_APPS[k].title; }
+var RESUME = /^[a-f0-9]{64}$/.test(q.get('resume') || '') ? q.get('resume') : '';
+if (RESUME) history.replaceState(null, '', location.pathname + '?app=' + (MF ? 'multifamily' : APP));
+var S = { screen: -1, data: {}, token: '', ups: [], ssnSaved: '', dobSaved: false, stamp: '', submitted: false, saving: false, pending: false, timer: 0 };
+
+// ---------- network: cookieless JSON calls with retry ----------
+function api(fn, arg, tries) {
+  tries = tries || 3;
+  return fetch(API, { method: 'POST', body: JSON.stringify({ fn: fn, arg: arg }), credentials: 'omit', redirect: 'follow', headers: { 'Content-Type': 'text/plain;charset=utf-8' } })
+    .then(function (r) { if (!r.ok) throw new Error('net'); return r.json(); })
+    .then(function (j) { if (!j.ok) { var e = new Error(j.error || 'Something went wrong.'); e.server = true; throw e; } return j.result; })
+    .catch(function (e) {
+      if (e.server || tries <= 1) throw e.server ? e : new Error('No connection. Check your signal and try again — your answers are kept on this phone.');
+      return new Promise(function (res) { setTimeout(res, (4 - tries) * 1500); }).then(function () { return api(fn, arg, tries - 1); });
+    });
+}
+function setOffline() { $('#offline').hidden = navigator.onLine !== false; }
+addEventListener('online', function () { setOffline(); if (S.pending) save(); });
+addEventListener('offline', setOffline);
+
+// ---------- local copy (never SSN / DOB) ----------
+function keep() {
+  if (!APP || S.submitted) return;
+  var d = {}; Object.keys(S.data).forEach(function (k) { if (MSF_SENSITIVE.indexOf(k) < 0) d[k] = S.data[k]; });
+  ls('msf2d_' + APP, JSON.stringify({ t: Date.now(), d: d }));
+}
+function status(t) { var s = $('#sv'); if (s) s.textContent = t; }
+function flush(ok, e) { var w = S.waiters || []; S.waiters = []; w.forEach(function (f) { f(ok, e); }); }
+function save(cb) {
+  if (cb) (S.waiters = S.waiters || []).push(cb);
+  if (S.submitted) { flush(true); return; }
+  if (S.saving) { S.pending = true; return; }
+  S.saving = true; S.pending = false; clearTimeout(S.timer); status('Saving…');
+  var clear = S.clearSens || null;
+  api('save2', { app: APP, token: S.token, data: S.data, hp: hp(), clear: clear }).then(function (r) {
+    S.saving = false; S.clearSens = null;
+    if (r && r.token) { S.token = r.token; ls('msf2_' + APP, r.token); S.ssnSaved = r.ssnSaved; S.dobSaved = r.dobSaved; }
+    if (S.pending) { save(); return; }
+    status('Saved'); flush(true);
+  }).catch(function (e) {
+    S.saving = false; S.pending = false; status(navigator.onLine === false ? 'Offline — kept on this phone' : 'Not saved yet — retrying');
+    clearTimeout(S.timer); S.timer = setTimeout(save, 10000); flush(false, e);
+  });
+}
+function soon() { keep(); status('Saving…'); clearTimeout(S.timer); S.timer = setTimeout(save, 1400); }
+function hp() { var h = $('[name=website]'); return h ? h.value : ''; }
+
+// ---------- welcome ----------
+function welcome() {
+  S.screen = -1; setDocTitle();
+  var picked = APP, saved = picked && (ls('msf2_' + picked) || ls('msf_' + picked)), h;
+  if (picked) {
+    // Direct link (?app=...): only this application, Start button above the fold.
+    var blurb = MF ? 'Apartment buildings with 5 or more units — purchase, refinance or bridge financing.' : MSF_APPS[picked].blurb;
+    h = '<main class="wrap"><div class="hero one"><picture><source srcset="msf-logo-320.webp 320w, msf-logo-640.webp 640w" sizes="200px" type="image/webp"><img src="msf-logo-640.png" width="640" height="325" alt="My Source Finance — Finance & Mortgage Group"></picture>' +
+      '<h1>' + esc(appTitle(picked)) + '</h1><p class="lead">' + esc(blurb) + '</p>' +
+      '<p class="mins">About ' + MSF_APPS[picked].minutes + ' minutes · saves as you go</p></div>' +
+      '<div class="go"><button class="btn pri" id="start">' + (saved ? 'Continue my application' : 'Start application') + '</button>' + (saved ? '<button class="btn sec" id="fresh">Start over</button>' : '') + '</div>' +
+      '<div class="need"><b>Have handy:</b> the property address, the loan amount you need, and a rough idea of your income or cash on hand. Documents can be photographed or uploaded later. We never ask for your Social Security number.</div>' +
+      '<p class="other"><button type="button" class="link" id="choose">Choose a different loan type</button></p>';
+  } else {
+    // No application in the link: loan-type chooser.
+    h = '<main class="wrap"><div class="hero"><picture><source srcset="msf-logo-320.webp 320w, msf-logo-640.webp 640w" sizes="300px" type="image/webp"><img src="msf-logo-640.png" width="640" height="325" alt="My Source Finance — Finance & Mortgage Group"></picture>' +
+      '<h1>Private client application</h1><p>Choose the financing you need. Each application takes a few minutes on your phone and saves as you go.</p></div><div class="rule"></div>' +
+      '<div class="pick" role="group" aria-label="Loan type">' + Object.keys(MSF_APPS).map(function (k) {
+        var a = MSF_APPS[k]; return '<button type="button" data-app="' + k + '"><b>' + esc(a.title) + '</b><span>' + esc(a.blurb) + '</span><em>' + a.minutes + ' min</em></button>';
+      }).join('') + '</div>';
+  }
+  h += '<p style="text-align:center;color:var(--mut);font-size:15px;margin:18px 0 30px">Simon Zarour · Mortgage Loan Originator · NMLS #2684220<br>Call or text <a href="tel:+12014849544">' + PHONE + '</a></p></main><footer class="wrap home">' + FOOT + '</footer>';
+  $('#app').innerHTML = h;
+  scrollTo(0, 0);
+  $$('.pick button').forEach(function (b) { b.onclick = function () { APP = b.dataset.app; MF = false; history.pushState(null, '', location.pathname + '?app=' + APP); welcome(); var s = $('#start'); if (s) s.focus(); }; });
+  if ($('#choose')) $('#choose').onclick = function () { if (FOLDER_APP) { location.href = new URL('./', document.baseURI).href; return; } APP = ''; MF = false; history.pushState(null, '', location.pathname); welcome(); };
+  if ($('#start')) $('#start').onclick = function () { begin(false); };
+  if ($('#fresh')) $('#fresh').onclick = function () { ls('msf2_' + APP, ''); ls('msf_' + APP, ''); ls('msf2d_' + APP, ''); begin(true); };
+}
+// Browser Back between the chooser and a loan type's start screen.
+addEventListener('popstate', function () {
+  if (DSCR) return;
+  if (S.screen >= 0) save(); // keep answers, then show the start screen for this address
+  var raw = new URLSearchParams(location.search).get('app') || FOLDER_APP;
+  APP = msfApp(raw); MF = raw === 'multifamily' && APP === 'commercial'; welcome();
+});
+
+function begin(fresh) {
+  api('stamp', {}).then(function (s) { S.stamp = s; }).catch(function () {});
+  var tok = fresh ? '' : (RESUME || ls('msf2_' + APP) || ls('msf_' + APP));
+  var local = null; try { local = JSON.parse(ls('msf2d_' + APP) || 'null'); } catch (e) {}
+  if (!tok) { if (local && !fresh) S.data = local.d; go(0); return; }
+  $('#app').innerHTML = '<main class="wrap"><p style="padding:40px 0;text-align:center;color:var(--mut)">Opening your saved application…</p></main>';
+  api('load2', tok).then(function (r) {
+    if (r && r.ok && r.app === APP) {
+      S.token = tok; ls('msf2_' + APP, tok); ls('msf_' + APP, '');
+      S.data = r.schema < 2 ? r.data : r.data; S.ups = r.uploads || []; S.ssnSaved = r.ssnSaved; S.dobSaved = r.dobSaved;
+      var merged = false; if (local && local.d && !RESUME) Object.keys(local.d).forEach(function (k) { if ((S.data[k] === undefined || S.data[k] === '') && local.d[k] !== '' && local.d[k] != null) { S.data[k] = local.d[k]; merged = true; } });
+      go(firstIncomplete(), 'Welcome back — your saved answers are loaded.'); if (merged) save();
+    } else { if (local && !RESUME) S.data = local.d; go(0); }
+  }).catch(function () { if (local) S.data = local.d; go(0, 'We couldn’t reach the server, so we opened the answers kept on this phone. They’ll save when you’re back online.'); S.pending = true; });
+}
+function screens() { return MSF_APPS[APP].screens; }
+function firstIncomplete() {
+  var sc = screens();
+  for (var i = 0; i < sc.length - 1; i++) if (sc[i].fields && validate(i).length) return i;
+  return sc.length - 1;
+}
+
+// ---------- rendering ----------
+function wrapField(f, inner, extra) {
+  return '<div class="f' + (extra || '') + '" id="w_' + f.id + '"' + (f.s ? ' data-s=\'' + esc(JSON.stringify(f.s)) + '\'' : '') + (msfShown(f, S.data) ? '' : ' hidden') + '>' + inner + '<div class="msg" id="m_' + f.id + '" aria-live="polite"></div></div>';
+}
+function lbl(f, forId) { return '<label class="l" for="' + forId + '">' + esc(f.l) + (f.r ? '' : ' <span class="opt">(optional)</span>') + '</label>' + (f.h ? '<div class="h" id="h_' + forId + '">' + esc(f.h) + '</div>' : ''); }
+function inputHtml(f, name, val, id) {
+  if (f.d && !f.ph) f = Object.assign({}, f, { ph: f.d + ' (standard)' });
+  var t = f.t, a = ' id="' + id + '" name="' + name + '"' + (f.h ? ' aria-describedby="h_' + id + '"' : '');
+  if (t === 'select') return '<select' + a + (f.ac ? ' autocomplete="' + f.ac + '"' : '') + '><option value="">' + (f.d ? esc(f.d) + ' (standard)' : 'Select…') + '</option>' + f.o.map(function (o) { return '<option' + (o === val ? ' selected' : '') + '>' + esc(o) + '</option>'; }).join('') + '</select>';
+  if (t === 'textarea') return '<textarea' + a + ' maxlength="4000">' + esc(val) + '</textarea>';
+  if (t === 'money') return '<div class="in money"><input type="text" inputmode="decimal" autocomplete="off"' + a + ' value="' + esc(money(val)) + '"></div>';
+  if (t === 'pct') return '<div class="in pct"><input type="text" inputmode="decimal" autocomplete="off"' + a + ' value="' + esc(val) + '"></div>';
+  if (t === 'int') return '<input type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off"' + a + ' value="' + esc(val) + '">';
+  if (t === 'date') return '<input type="date"' + a + ' value="' + esc(val) + '">';
+  if (t === 'month') return '<input type="month" placeholder="YYYY-MM"' + a + ' value="' + esc(val) + '">';
+  var ty = t === 'email' ? 'email' : t === 'tel' ? 'tel' : 'text';
+  var ac = f.ac ? ' autocomplete="' + f.ac + '"' : (t === 'text' ? ' autocomplete="off"' : '');
+  var extra = t === 'email' ? ' autocapitalize="off" spellcheck="false"' : t === 'tel' ? ' inputmode="tel"' : ' autocapitalize="words"';
+  return '<input type="' + ty + '"' + a + ac + extra + (f.ph ? ' placeholder="' + esc(f.ph) + '"' : '') + ' maxlength="300" value="' + esc(val) + '">';
+}
+function fieldHtml(f) {
+  var v = S.data[f.id];
+  if (f.t === 'table') return tableHtml(f);
+  if (f.t === 'choice' || f.t === 'yesno' || f.t === 'check') {
+    var opts = f.t === 'yesno' ? MSF_YN : f.o, multi = f.t === 'check', sel = multi ? (Array.isArray(v) ? v : []) : v;
+    var inner = '<fieldset><legend class="l">' + esc(f.l) + (f.r ? '' : ' <span class="opt">(optional)</span>') + '</legend>' + (f.h ? '<div class="h">' + esc(f.h) + '</div>' : '') +
+      '<div class="ch' + (opts.length === 2 ? ' two' : '') + '">' + opts.map(function (o, i) {
+        var on = multi ? sel.indexOf(o) >= 0 : sel === o;
+        return '<label class="c"><input type="' + (multi ? 'checkbox' : 'radio') + '" name="' + f.id + '" value="' + esc(o) + '"' + (on ? ' checked' : '') + '><span>' + esc(o) + '</span></label>';
+      }).join('') + '</div></fieldset>';
+    return wrapField(f, inner);
+  }
+  return wrapField(f, lbl(f, 'i_' + f.id) + inputHtml(f, f.id, v == null ? '' : v, 'i_' + f.id));
+}
+function tableHtml(f) {
+  var rows = Array.isArray(S.data[f.id]) ? S.data[f.id] : [];
+  var later = !!S.data['later_' + f.id];
+  var h = '<div class="tbl" id="w_' + f.id + '"' + (f.s ? ' data-s=\'' + esc(JSON.stringify(f.s)) + '\'' : '') + (msfShown(f, S.data) ? '' : ' hidden') + '><h3>' + esc(f.l) + '</h3>' + (f.h ? '<div class="h" style="margin:6px 0 0">' + esc(f.h) + '</div>' : '');
+  h += '<label class="c later"><input type="checkbox" name="later_' + f.id + '"' + (later ? ' checked' : '') + '><span>Add these details later</span></label>';
+  h += '<div class="rows"' + (later ? ' hidden' : '') + '>';
+  rows.forEach(function (r, i) {
+    h += '<div class="row"><div class="rh"><span>' + (i + 1) + '. ' + esc(r[f.cols[0].id] || 'New entry') + '</span><button type="button" class="link" data-del="' + f.id + '" data-i="' + i + '" aria-label="Remove entry ' + (i + 1) + '">Remove</button></div><div class="grid">' +
+      f.cols.map(function (c, j) { var id = 't_' + f.id + '_' + i + '_' + c.id, wide = (c.t === 'text' || c.t === 'select') ? ' w' : ''; return '<div class="f' + wide + '">' + '<label class="l" for="' + id + '" style="font-size:14px">' + esc(c.l) + '</label>' + inputHtml(c, f.id + '.' + i + '.' + c.id, r[c.id] == null ? '' : r[c.id], id) + '</div>'; }).join('') + '</div></div>';
+  });
+  h += (rows.length < (f.max || 10) ? '<button type="button" class="add" data-add="' + f.id + '">+ Add ' + (rows.length ? 'another' : 'an entry') + '</button>' : '') + '</div><div class="msg" id="m_' + f.id + '"></div></div>';
+  return h;
+}
+var GROUPS = { pfs: ['Personal financial statement', 'Optional, but lenders ask for it. Round numbers are fine.'], bud: ['Development budget', 'Line items lenders review first.'], basis: ['Cost basis', 'What you have invested so far — lenders size refinances and cash-out on this.'], ops: ['Rent and operating expenses', 'Monthly rents, yearly expenses. Round numbers are fine.'], reno: ['Renovation plan', 'Leave blank if no renovation is planned.'] };
+function fieldsHtml(fields) {
+  var h = '', i = 0;
+  while (i < fields.length) {
+    var f = fields[i];
+    if (f.g) {
+      var g = f.g, list = [];
+      while (i < fields.length && fields[i].g === g) list.push(fields[i++]);
+      var later = S.data['later_' + g];
+      h += '<div class="grp" id="g_' + g + '"><h3>' + GROUPS[g][0] + '</h3><div class="h" style="margin:6px 0 0">' + GROUPS[g][1] + '</div>' +
+        (g === 'pfs' || g === 'basis' ? '<label class="c later"><input type="checkbox" name="later_' + g + '"' + (later ? ' checked' : '') + '><span>Add these details later</span></label>' : '') +
+        '<div class="gb"' + (later ? ' hidden' : '') + '>' + list.map(fieldHtml).join('') + '</div><div class="calc" id="calc_' + g + '" hidden></div></div>';
+      continue;
+    }
+    h += fieldHtml(f); i++;
+  }
+  return h;
+}
+function dealHtml() {
+  var r = msfDeal(APP, S.data);
+  if (!r.ready) return '<p class="h" style="margin:0">Enter an interest rate below to see your estimate.</p>';
+  return r.sections.map(function (sec) { return '<h4>' + esc(sec.t) + '</h4>' + sec.rows.map(function (row) { return '<div><span>' + esc(row[0]) + '</span><b>' + esc(msfFmt(row[2], row[1])) + '</b></div>'; }).join(''); }).join('') +
+    (r.tests.length ? '<h4>Preliminary lending assessment</h4>' + r.tests.map(function (t) { return '<div><span>' + esc(t[0]) + '</span><b class="' + (/Meets|Covered|Positive/.test(t[1]) ? 'okv' : 'badv') + '">' + esc(t[1]) + '</b></div>'; }).join('') : '') +
+    '<small>' + esc(MSF_CALC_NOTE) + '</small>';
+}
+function calcHtml(fields) {
+  return '<div class="deal" id="deal" aria-live="polite">' + dealHtml() + '</div><div class="assume"><h3 style="font:600 22px/1.2 var(--serif);color:var(--gold2);margin:24px 0 0">Rate and assumptions</h3>' + fieldsHtml(fields) + '</div>';
+}
+function docsHtml() {
+  var cats = MSF_F.docs[APP];
+  var h = '<div class="note">Photos from your phone work. PDF, JPG, PNG, Word or Excel — up to 10 MB each. Nothing is required now; Simon will ask for anything missing.</div><div style="margin-top:6px">';
+  cats.forEach(function (c) {
+    var mine = S.ups.filter(function (u) { return u.cat === c[0]; });
+    h += '<div class="doc"><div class="dl"><b>' + esc(c[1]) + '</b></div><label class="up">' + (mine.length ? 'Add more' : 'Upload') + '<input type="file" data-cat="' + c[0] + '" accept="application/pdf,image/*,.pdf,.jpg,.jpeg,.png,.heic,.docx,.xlsx" multiple aria-label="Upload ' + esc(c[1]) + '"></label>' +
+      '<div class="files" id="fl_' + c[0] + '">' + mine.map(function (u) { return '<div><span>✓ ' + esc(u.name) + ' · ' + kb(u.size) + '</span><button type="button" class="link" data-rm="' + esc(u.uid) + '" aria-label="Remove ' + esc(u.name) + '">Remove</button></div>'; }).join('') + '</div></div>';
+  });
+  h += '</div>';
+  h += '<div class="secure">' + LOCK + '<p><b>No Social Security number needed.</b> This application never asks for it. Simon will discuss credit with you directly. No credit report is pulled because you submit this form.</p></div>';
+  return h;
+}
+function reviewHtml() {
+  var h = '<div class="rv">', calc = msfCalc(APP, S.data), deal = msfDeal(APP, S.data);
+  screens().forEach(function (s, si) {
+    if (!s.fields && s.id !== 'docs') return;
+    var items = '';
+    if (s.fields) s.fields.forEach(function (f) {
+      if (!msfShown(f, S.data)) return; var v = S.data[f.id];
+      if (f.t === 'table') { if (v && v.length) items += '<dt>' + esc(f.l) + '</dt><dd>' + v.length + ' entr' + (v.length === 1 ? 'y' : 'ies') + '</dd>'; else if (S.data['later_' + f.id]) items += '<dt>' + esc(f.l) + '</dt><dd>To add later</dd>'; return; }
+      if (Array.isArray(v) ? !v.length : !v) return;
+      items += '<dt>' + esc(f.l) + '</dt><dd>' + esc(Array.isArray(v) ? v.join(', ') : f.t === 'money' ? '$' + money(v) : f.t === 'pct' ? v + '%' : v) + '</dd>';
+    });
+    else items = '<dt>Documents</dt><dd>' + (S.ups.length ? S.ups.length + ' uploaded' : 'None yet') + '</dd>';
+    h += '<section><div class="sh"><h3>' + esc(s.n) + '</h3><button type="button" class="link" data-go="' + si + '">Edit</button></div><dl>' + (items || '<dt>Nothing entered</dt><dd></dd>') + '</dl></section>';
+  });
+  h += '</div>';
+  var ks = Object.keys(calc);
+  if (deal.ready) h += '<div class="deal">' + dealHtml() + '</div>';
+  if (ks.length) h += '<div class="calc"><div><span>Calculated from your figures</span></div>' + ks.map(function (k) { return '<div><span>' + esc(MSF_CALC_LABELS[k][0]) + '</span><b>' + esc(msfFmtCalc(k, calc[k])) + '</b></div>'; }).join('') + '<small>Estimates only. Lenders make their own calculations.</small></div>';
+  if (S.data.notes !== undefined || true) h += fieldHtml(MSF_F.notes[0]);
+  h += '<div class="cons"><div class="f" id="w_consent" style="margin:0"><label class="c"><input type="checkbox" name="consent"' + (S.data.consent ? ' checked' : '') + '><span>' + esc(MSF_CONSENTS.consent) + '</span></label><div class="msg" id="m_consent"></div></div>' +
+    '<label class="c"><input type="checkbox" name="hardPull"' + (S.data.hardPull ? ' checked' : '') + '><span>' + esc(MSF_CONSENTS.hardPull) + '</span></label></div>';
+  return h;
+}
+function mfPreset() { if (MF && APP === 'commercial' && !S.data.assetClass) S.data.assetClass = 'Multifamily'; }
+function go(i, notice) {
+  mfPreset(); setDocTitle();
+  S.screen = i; var sc = screens(), s = sc[i], last = i === sc.length - 1;
+  var body = s.id === 'docs' ? docsHtml() : s.id === 'review' ? reviewHtml() : s.id === 'calc' ? calcHtml(s.fields) : fieldsHtml(s.fields);
+  var intro = { borrower: 'Tell us who is applying and how to reach you.', loan: 'The basics a lender looks at first.', fin: 'Approximate figures are fine at this stage.', project: 'The details that decide pricing and leverage. Use “Add these details later” for anything you don’t have handy.', docs: 'Upload what you have now — everything else can follow.', calc: 'Optional. Your numbers update instantly as you type. Blank boxes use the standard assumption shown. Estimates only — not a financing offer.', review: 'Check your answers, then submit securely.' }[s.id];
+  $('#app').innerHTML =
+    '<header class="bar"><div class="wrap"><picture><source srcset="msf-mark-96.webp" type="image/webp"><img src="msf-mark-96.png" width="96" height="100" alt=""></picture><div class="nm">My Source Finance<small>' + esc(appTitle(APP)) + '</small></div><div class="sv" id="sv" role="status" aria-live="polite">' + (S.token ? 'Saved' : '') + '</div></div>' +
+    '<div class="prog" role="progressbar" aria-label="Application progress" aria-valuemin="1" aria-valuemax="' + sc.length + '" aria-valuenow="' + (i + 1) + '"><i style="width:' + ((i + 1) / sc.length * 100) + '%"></i></div></header>' +
+    '<main class="wrap"><div class="head"><p class="step">Step ' + (i + 1) + ' of ' + sc.length + '</p><h2 tabindex="-1" id="ttl">' + esc(s.n) + '</h2><p class="intro">' + intro + '</p>' + (notice ? '<div class="note" role="status">' + esc(notice) + '</div>' : '') + '<div id="err"></div></div>' +
+    '<form id="frm" novalidate autocomplete="on">' + body + '<div class="hp" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div></form></main>' +
+    '<footer class="wrap">' + FOOT + '</footer>' +
+    '<div class="act"><div class="wrap">' + '<button type="button" class="btn sec" id="back">' + (i ? 'Back' : 'Home') + '</button><button type="button" class="btn pri" id="next">' + (last ? 'Submit application' : 'Continue') + '</button></div>' +
+    '<div class="wrap"><button type="button" class="link later2" id="later" style="margin:0 auto">Save and finish later</button></div></div>';
+  bind(); calcBoxes(); setOffline();
+  scrollTo(0, 0); var t = $('#ttl'); if (t) t.focus({ preventScroll: true });
+}
+
+// ---------- events ----------
+var DEPS = {};
+Object.keys(MSF_F).forEach(function (k) { if (Array.isArray(MSF_F[k])) MSF_F[k].forEach(function (f) { if (f.s) (f.s.all || [f.s]).forEach(function (c) { if (c.any) c.any.forEach(function (x) { DEPS[x] = 1; }); else DEPS[c.f] = 1; }); }); });
+function setVal(name, el) {
+  var p = name.split('.');
+  if (p.length === 3) { var arr = S.data[p[0]] || (S.data[p[0]] = []); var row = arr[+p[1]] || (arr[+p[1]] = {}); row[p[2]] = cleanInput(el); return; }
+  if (el.type === 'checkbox' && /^(later_|creditAuth|consent|hardPull)/.test(name)) { S.data[name] = el.checked ? 'yes' : ''; return; }
+  if (el.type === 'checkbox') { S.data[name] = $$('input[name="' + name + '"]:checked').map(function (x) { return x.value; }); return; }
+  if (el.type === 'radio') { if (el.checked) S.data[name] = el.value; return; }
+  S.data[name] = cleanInput(el);
+}
+function cleanInput(el) { var v = el.value; if (el.inputMode === 'decimal' || el.inputMode === 'numeric') v = v.replace(/[^\d.]/g, ''); return v.trim(); }
+function bind() {
+  var frm = $('#frm');
+  frm.addEventListener('submit', function (e) { e.preventDefault(); next(); });
+  frm.addEventListener('input', onEdit); frm.addEventListener('change', onEdit);
+  frm.addEventListener('focusout', function (e) {
+    var el = e.target; if (el.closest && el.closest('.money')) el.value = money(el.value);
+  });
+  frm.addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    if (b.dataset.add) { var a = S.data[b.dataset.add] || (S.data[b.dataset.add] = []); a.push({}); redrawTable(b.dataset.add, a.length - 1); soon(); }
+    else if (b.dataset.del) { S.data[b.dataset.del].splice(+b.dataset.i, 1); redrawTable(b.dataset.del); soon(); }
+    else if (b.dataset.go) { go(+b.dataset.go); }
+    else if (b.dataset.rm) removeUpload(b.dataset.rm, b);
+  });
+  $$('input[type=file]', frm).forEach(function (inp) { inp.addEventListener('change', function () { var files = Array.prototype.slice.call(inp.files); inp.value = ''; uploadAll(inp.dataset.cat, files); }); });
+  $('#back').onclick = function () { if (S.screen > 0) go(S.screen - 1); else { save(); welcome(); } };
+  $('#next').onclick = next;
+  $('#later').onclick = finishLater;
+}
+function onEdit(e) {
+  var el = e.target; if (!el.name || el.name === 'website' || el.type === 'file') return;
+  if (e.type === 'input' && (el.type === 'radio' || el.type === 'checkbox')) return;
+  setVal(el.name, el);
+  if (el.name === 'budget') S.data.budgetManual = 1;
+  if (/^later_/.test(el.name)) { var box = el.closest('.tbl,.grp'); var inner = box && $(box.classList.contains('tbl') ? '.rows' : '.gb', box); if (inner) inner.hidden = el.checked; }
+  if (DEPS[el.name]) vis();
+  var w = el.closest('.f'); if (w && w.classList.contains('bad') && (e.type === 'input' || el.type === 'radio' || el.type === 'checkbox' || el.tagName === 'SELECT')) { w.classList.remove('bad'); var m = $('.msg', w); if (m) m.textContent = ''; }
+  calcBoxes(el.name);
+  soon();
+}
+function vis() { $$('[data-s]').forEach(function (w) { w.hidden = !msfCond(JSON.parse(w.dataset.s), S.data); }); }
+function redrawTable(id, focusRow) {
+  var f = msfFields(APP).filter(function (x) { return x.id === id; })[0], w = $('#w_' + id);
+  var tmp = document.createElement('div'); tmp.innerHTML = tableHtml(f); w.replaceWith(tmp.firstChild);
+  if (focusRow != null) { var inp = $('#t_' + id + '_' + focusRow + '_' + f.cols[0].id); if (inp) inp.focus(); }
+}
+function calcBoxes(changed) {
+  var dl = $('#deal'); if (dl) dl.innerHTML = dealHtml();
+  var c = msfCalc(APP, S.data), show = function (id, keys) {
+    var box = $('#calc_' + id); if (!box) return; var ks = keys.filter(function (k) { return k in c; });
+    box.hidden = !ks.length; box.innerHTML = ks.map(function (k) { return '<div><span>' + esc(MSF_CALC_LABELS[k][0]) + '</span><b>' + esc(msfFmtCalc(k, c[k])) + '</b></div>'; }).join('') + '<small>Estimate from your figures.</small>';
+  };
+  show('pfs', ['totalAssets', 'totalLiabilities', 'netWorth']);
+  show('bud', ['budgetLines', 'contingencyPct']);
+  show('basis', ['totalBasis']);
+  show('ops', ['totalUnits', 'occupancy', 'totalOpex']);
+  show('reno', ['totalReno']);
+  if (APP === 'construction' && c.budgetLines && !S.data.budgetManual && /^(hardCosts|siteCosts|softCosts|contingency|interestReserve)$/.test(changed || '')) {
+    S.data.budget = String(c.budgetLines); var b = $('#i_budget'); if (b) b.value = money(c.budgetLines);
+  }
+}
+
+// ---------- validation ----------
+function check(f, v, errs, label) {
+  var t = f.t;
+  if (f.r && (Array.isArray(v) ? !v.length : !v)) { errs.push([f.id, (label || 'This') + ' is required']); return; }
+  if (!v || Array.isArray(v)) return;
+  if (t === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) errs.push([f.id, 'Enter a valid email address']);
+  else if (t === 'tel' && (!/^[0-9()+ .\-]{7,20}$/.test(v) || v.replace(/\D/g, '').length < 10)) errs.push([f.id, 'Enter a phone number with area code']);
+  else if (t === 'money' && !/^\d{1,10}(\.\d{1,2})?$/.test(v)) errs.push([f.id, 'Enter an amount in dollars']);
+  else if (t === 'int' && !/^\d{1,7}$/.test(v)) errs.push([f.id, 'Enter a whole number']);
+  else if (t === 'pct' && !(/^\d{1,3}(\.\d{1,2})?$/.test(v) && +v <= 100)) errs.push([f.id, 'Enter a percentage from 0 to 100']);
+  else if (t === 'month' && !/^\d{4}-\d{2}$/.test(v)) errs.push([f.id, 'Enter as YYYY-MM']);
+}
+function validate(i) {
+  var s = screens()[i], errs = [], d = S.data;
+  if (s.fields) s.fields.forEach(function (f) {
+    if (!msfShown(f, d)) return;
+    if (f.t === 'table') { if (d['later_' + f.id]) return; (d[f.id] || []).forEach(function (r, ri) { f.cols.forEach(function (c) { var e2 = []; check(c, r[c.id], e2); if (e2.length) errs.push([f.id, 'Entry ' + (ri + 1) + ', ' + c.l + ': ' + e2[0][1].toLowerCase()]); }); }); return; }
+    check(f, d[f.id], errs, f.l);
+  });
+  if (s.id === 'docs') {
+  }
+  if (s.id === 'review') { check(MSF_F.notes[0], d.notes, errs); if (!d.consent) errs.push(['consent', 'Check this box to submit']); }
+  return errs;
+}
+function showErrs(errs) {
+  $$('.msg').forEach(function (m) { m.textContent = ''; }); $$('.bad').forEach(function (w) { w.classList.remove('bad'); });
+  var box = $('#err'); if (!errs.length) { box.innerHTML = ''; return; }
+  box.innerHTML = '<div class="alert" role="alert">' + (errs.length === 1 ? 'One answer needs attention.' : errs.length + ' answers need attention.') + '</div>';
+  errs.forEach(function (e) { var w = $('#w_' + e[0]); if (w) { w.classList.add('bad'); var m = $('#m_' + e[0]); if (m && !m.textContent) m.textContent = e[1]; } });
+  var first = $('#w_' + errs[0][0]); if (first) { first.scrollIntoView({ block: 'center' }); var inp = $('input:not([type=hidden]),select,textarea', first); if (inp) inp.focus({ preventScroll: true }); }
+}
+function next() {
+  var errs = validate(S.screen); showErrs(errs); if (errs.length) return;
+  var sc = screens();
+  if (S.screen < sc.length - 1) { save(); go(S.screen + 1); return; }
+  submit();
+}
+
+// ---------- submit ----------
+function submit() {
+  var btn = $('#next'); btn.disabled = true; btn.textContent = 'Submitting securely…';
+  var fail = function (msg) { btn.disabled = false; btn.textContent = 'Try again'; $('#err').innerHTML = '<div class="alert" role="alert">' + esc(msg) + ' Your answers are still here. Tap “Try again”. If it keeps failing, call or text ' + PHONE + '.</div>'; $('#err').scrollIntoView({ block: 'center' }); };
+  var wait = S.stamp ? 0 : 1;
+  (wait ? api('stamp', {}).then(function (s) { S.stamp = s; }) : Promise.resolve()).then(function () {
+    return new Promise(function (res) { save(function () { res(); }); });
+  }).then(function () {
+    return api('submit2', { app: APP, token: S.token, data: S.data, stamp: S.stamp, hp: hp() }, 2);
+  }).then(function (r) {
+    if (!r.ok) { btn.disabled = false; btn.textContent = 'Submit application'; showErrs([]); $('#err').innerHTML = '<div class="alert" role="alert">' + r.errors.map(esc).join('<br>') + '</div>'; return; }
+    S.submitted = true; clearTimeout(S.timer); ls('msf2_' + APP, ''); ls('msf2d_' + APP, ''); ls('msf_' + APP, '');
+    done(r.ref);
+  }).catch(function (e) { fail(e.message || 'Something went wrong.'); });
+}
+function done(ref) {
+  $('#app').innerHTML = '<header class="bar"><div class="wrap"><picture><source srcset="msf-mark-96.webp" type="image/webp"><img src="msf-mark-96.png" width="96" height="100" alt=""></picture><div class="nm">My Source Finance<small>' + esc(appTitle(APP)) + '</small></div></div></header>' +
+    '<main class="wrap"><div class="done"><picture><source srcset="msf-logo-320.webp" type="image/webp"><img src="msf-logo-640.png" width="200" height="102" alt="My Source Finance" style="width:200px;height:auto"></picture><h2 tabindex="-1" id="ttl">Application received</h2><p>Your reference number</p><div class="ref">' + esc(ref) + '</div>' +
+    '<ol class="next"><li>Simon Zarour reviews your application, usually within one business day.</li><li>He contacts you to confirm the details and the best lender options.</li><li>Nothing is sent to a lender and no credit is pulled without speaking with you first.</li></ol>' +
+    '<p style="margin-top:22px">Questions? Call or text <a href="tel:+12014849544">' + PHONE + '</a></p></div></main><footer class="wrap home">' + FOOT + '</footer>';
+  scrollTo(0, 0); $('#ttl').focus();
+}
+
+// ---------- save & finish later (no email is sent from the server) ----------
+function finishLater() {
+  var sheet = document.createElement('div'); sheet.className = 'sheet'; sheet.setAttribute('role', 'dialog'); sheet.setAttribute('aria-modal', 'true'); sheet.setAttribute('aria-labelledby', 'shh');
+  sheet.innerHTML = '<div><h3 id="shh">Saving…</h3><p id="shp" style="color:var(--mut);font-size:15px;margin:0">One moment.</p></div>';
+  document.body.appendChild(sheet);
+  var close = function () { sheet.remove(); $('#later').focus(); };
+  sheet.addEventListener('click', function (e) { if (e.target === sheet) close(); });
+  document.addEventListener('keydown', function k(e) { if (e.key === 'Escape') { close(); document.removeEventListener('keydown', k); } });
+  save(function (ok) {
+    if (!ok || !S.token) { $('#shh').textContent = 'Kept on this phone'; $('#shp').innerHTML = 'We couldn’t reach the server right now, so your answers are stored on this phone. Open this same link on this phone to continue.<div class="btns"><button class="btn pri" id="shx">OK</button></div>'; $('#shx').onclick = close; return; }
+    var link = location.origin + location.pathname + '?app=' + (MF ? 'multifamily' : APP) + '&resume=' + S.token;
+    $('#shh').textContent = 'Saved';
+    $('#shp').innerHTML = 'This phone will reopen your application automatically. To continue on another device, keep this private link — anyone with it can open your saved answers.' +
+      '<label class="sr" for="shl">Your private link</label><input id="shl" type="text" readonly value="' + esc(link) + '" style="margin-top:12px">' +
+      '<div class="btns">' + (navigator.share ? '<button class="btn pri" id="shs">Send to myself</button>' : '') + '<button class="btn ' + (navigator.share ? 'sec' : 'pri') + '" id="shc">Copy link</button><button class="btn sec" id="shx">Done</button></div>';
+    if ($('#shs')) $('#shs').onclick = function () { navigator.share({ title: 'My Source Finance application', url: link }).catch(function () {}); };
+    $('#shc').onclick = function () { var i = $('#shl'); i.select(); (navigator.clipboard ? navigator.clipboard.writeText(link) : Promise.reject()).catch(function () { try { document.execCommand('copy'); } catch (e) {} }); $('#shc').textContent = 'Copied'; };
+    $('#shx').onclick = close; $('#shx').focus();
+  });
+}
+
+// ---------- uploads ----------
+var EXT = /\.(pdf|jpe?g|png|heic|heif|docx|xlsx)$/i;
+function shrink(file) { // resize large phone photos before upload (keeps documents legible)
+  return new Promise(function (res) {
+    if (!/^image\/(jpeg|png)$/.test(file.type) || file.size < 2.5 * 1048576) return res(file);
+    var img = new Image(), url = URL.createObjectURL(file);
+    img.onload = function () {
+      var k = Math.min(1, 2400 / Math.max(img.width, img.height)), c = document.createElement('canvas');
+      c.width = Math.round(img.width * k); c.height = Math.round(img.height * k); c.getContext('2d').drawImage(img, 0, 0, c.width, c.height); URL.revokeObjectURL(url);
+      c.toBlob(function (b) { res(b && b.size < file.size ? new File([b], file.name.replace(/\.(png|jpe?g)$/i, '') + '.jpg', { type: 'image/jpeg' }) : file); }, 'image/jpeg', 0.85);
+    };
+    img.onerror = function () { URL.revokeObjectURL(url); res(file); };
+    img.src = url;
+  });
+}
+function b64(file) { return new Promise(function (res, rej) { var r = new FileReader(); r.onload = function () { res(String(r.result).split(',')[1] || ''); }; r.onerror = function () { rej(new Error('Could not read this file.')); }; r.readAsDataURL(file); }); }
+function uploadAll(cat, files) {
+  var list = $('#fl_' + cat), chain = Promise.resolve();
+  var ensure = S.token ? Promise.resolve(true) : new Promise(function (res) { save(function (ok) { res(ok && S.token); }); });
+  files.forEach(function (file) {
+    var line = document.createElement('div'); line.innerHTML = '<span>Preparing ' + esc(file.name) + '…</span>'; list.appendChild(line);
+    var err = function (m) { line.innerHTML = '<span style="color:var(--err);white-space:normal">' + esc(file.name) + ': ' + esc(m) + '</span>'; };
+    if (!EXT.test(file.name) && !/^image\//.test(file.type)) { err('use PDF, JPG, PNG, HEIC, Word or Excel.'); return; }
+    chain = chain.then(function () { return ensure; }).then(function (ok) {
+      if (!ok) throw new Error('No connection — try again when you have signal.');
+      return shrink(file);
+    }).then(function (f) {
+      var name = EXT.test(f.name) ? f.name : f.name + (f.type === 'image/png' ? '.png' : '.jpg');
+      if (f.size > 10 * 1048576) throw new Error('larger than 10 MB. Please send a smaller copy.');
+      line.innerHTML = '<span>Uploading ' + esc(name) + ' (' + kb(f.size) + ')…</span>';
+      return b64(f).then(function (data) { return api('upload', { token: S.token, app: APP, cat: cat, name: name, b64: data }, 2); });
+    }).then(function (u) {
+      S.ups.push(u); line.innerHTML = '<span>✓ ' + esc(u.name) + ' · ' + kb(u.size) + '</span><button type="button" class="link" data-rm="' + esc(u.uid) + '" aria-label="Remove ' + esc(u.name) + '">Remove</button>';
+      var lab = line.closest('.doc'); if (lab) $('.up', lab).firstChild.nodeValue = 'Add more';
+    }).catch(function (e) { err(e.message || 'upload failed.'); });
+  });
+}
+function removeUpload(uid, b) {
+  b.disabled = true; b.textContent = 'Removing…';
+  api('deleteUpload', { token: S.token, uid: uid }).then(function () { S.ups = S.ups.filter(function (u) { return u.uid !== uid; }); b.parentNode.remove(); })
+    .catch(function (e) { b.disabled = false; b.textContent = 'Remove'; var m = document.createElement('span'); m.style.color = 'var(--err)'; m.textContent = ' ' + e.message; b.parentNode.appendChild(m); });
+}
+
+// ---------- standalone DSCR calculator (?app=dscr) — runs only on this phone, nothing is saved or sent ----------
+var DSCR_IDS = ['value', 'presentValue', 'loanAmt', 'resUnits', 'comUnits', 'rentRes', 'rentCom', 'rentResPro', 'rentComPro', 'otherIncome', 'taxes', 'insurance', 'utilities', 'repairs', 'otherOpex', 'cashAvail', 'renoUnits', 'renoPerUnit', 'renoOther'];
+var DSCR_LABEL = { value: 'Purchase price (or value if refinancing)' };
+function dscrPage() {
+  S.screen = -1; setDocTitle();
+  var all = msfFields('commercial'), pick = DSCR_IDS.map(function (id) { var f = all.filter(function (x) { return x.id === id; })[0]; if (!f) return null; var c = JSON.parse(JSON.stringify(f)); delete c.s; delete c.r; if (DSCR_LABEL[id]) c.l = DSCR_LABEL[id]; return c; }).filter(Boolean);
+  $('#app').innerHTML =
+    '<header class="bar"><div class="wrap"><picture><source srcset="msf-mark-96.webp" type="image/webp"><img src="msf-mark-96.png" width="96" height="100" alt=""></picture><div class="nm">My Source Finance<small>DSCR Calculator</small></div></div></header>' +
+    '<main class="wrap"><div class="head"><h2 tabindex="-1" id="ttl">DSCR Calculator</h2><p class="intro">Enter the property figures for an instant estimate of NOI, payment, DSCR, LTV and supportable loan. Nothing is saved or sent.</p></div>' +
+    '<form id="frm" novalidate autocomplete="off">' + fieldsHtml(pick) + calcHtml(MSF_F.calcCom) + '</form>' +
+    '<div style="display:grid;gap:10px;margin:22px 0 10px">' + (navigator.share ? '<button type="button" class="btn sec" id="dshare">Share this calculator</button>' : '') +
+    '<a class="btn pri" style="text-align:center;text-decoration:none" href="commercial/">Start a Commercial application</a><a class="btn sec" style="text-align:center;text-decoration:none" href="multifamily/">Start a Multifamily application</a></div></main>' +
+    '<footer class="wrap">' + FOOT + '</footer>';
+  var frm = $('#frm');
+  var upd = function (e) { var el = e.target; if (!el.name) return; if (e.type === 'input' && (el.type === 'radio' || el.type === 'checkbox')) return; setVal(el.name, el); calcBoxes(el.name); };
+  frm.addEventListener('input', upd); frm.addEventListener('change', upd);
+  frm.addEventListener('submit', function (e) { e.preventDefault(); });
+  frm.addEventListener('focusout', function (e) { var el = e.target; if (el.closest && el.closest('.money')) el.value = money(el.value); });
+  if ($('#dshare')) $('#dshare').onclick = function () { navigator.share({ title: 'My Source Finance — DSCR Calculator', url: new URL('dscr/', document.baseURI).href }).catch(function () {}); };
+  calcBoxes();
+}
+
+addEventListener('pagehide', function () { if (S.pending || S.saving) keep(); });
+setOffline();
+if (DSCR) dscrPage(); else if (APP && RESUME) begin(false); else welcome();
+})();
+</script>
+</body></html>

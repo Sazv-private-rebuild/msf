@@ -2,7 +2,7 @@
 <html lang="en"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>My Source Finance — Private Client Application</title>
+<title>My Source Finance — Loan Applications</title>
 <meta name="description" content="Secure loan application — My Source Finance, Simon Zarour, NMLS #2684220.">
 <meta name="theme-color" content="#08142b">
 <meta name="robots" content="noindex">
@@ -663,9 +663,13 @@ function money(v) { var n = String(v || '').replace(/[^\d.]/g, ''); if (!n) retu
 function kb(n) { n = Number(n || 0); return n > 1048576 ? (n / 1048576).toFixed(1) + ' MB' : Math.max(1, Math.round(n / 1024)) + ' KB'; }
 
 var q = new URLSearchParams(location.search);
-var DSCR = q.get('app') === 'dscr'; // standalone DSCR calculator: nothing saved or sent
-var APP = DSCR ? 'commercial' : msfApp(q.get('app') || '');
-var MF = q.get('app') === 'multifamily' && APP === 'commercial'; // Multifamily link: commercial form, Multifamily preselected
+var FOLDER_APP = (document.querySelector('meta[name=msf-app]') || {}).content || ''; // set only in /msf/<app>/ pages
+var RAW_APP = q.get('app') || FOLDER_APP;
+var DSCR = RAW_APP === 'dscr'; // standalone DSCR calculator: nothing saved or sent
+var APP = DSCR ? 'commercial' : msfApp(RAW_APP);
+var MF = RAW_APP === 'multifamily' && APP === 'commercial'; // Multifamily link: commercial form, Multifamily preselected
+var DOC_TITLES = { residential: 'Residential Mortgage Application', commercial: 'Commercial Loan Application', construction: 'Construction Financing Application', private: 'Private / Fix & Flip Application', multifamily: 'Multifamily Loan Application', dscr: 'DSCR Calculator' };
+function setDocTitle() { var k = DSCR ? 'dscr' : MF ? 'multifamily' : APP; document.title = k && DOC_TITLES[k] ? DOC_TITLES[k] + ' — My Source Finance' : 'My Source Finance — Loan Applications'; }
 function appTitle(k) { if (DSCR) return 'DSCR Calculator'; return MF && k === 'commercial' ? 'Multifamily Loan (5+ units)' : MSF_APPS[k].title; }
 var RESUME = /^[a-f0-9]{64}$/.test(q.get('resume') || '') ? q.get('resume') : '';
 if (RESUME) history.replaceState(null, '', location.pathname + '?app=' + (MF ? 'multifamily' : APP));
@@ -715,7 +719,7 @@ function hp() { var h = $('[name=website]'); return h ? h.value : ''; }
 
 // ---------- welcome ----------
 function welcome() {
-  S.screen = -1;
+  S.screen = -1; setDocTitle();
   var picked = APP, saved = picked && (ls('msf2_' + picked) || ls('msf_' + picked)), h;
   if (picked) {
     // Direct link (?app=...): only this application, Start button above the fold.
@@ -738,7 +742,7 @@ function welcome() {
   $('#app').innerHTML = h;
   scrollTo(0, 0);
   $$('.pick button').forEach(function (b) { b.onclick = function () { APP = b.dataset.app; MF = false; history.pushState(null, '', location.pathname + '?app=' + APP); welcome(); var s = $('#start'); if (s) s.focus(); }; });
-  if ($('#choose')) $('#choose').onclick = function () { APP = ''; MF = false; history.pushState(null, '', location.pathname); welcome(); };
+  if ($('#choose')) $('#choose').onclick = function () { if (FOLDER_APP) { location.href = new URL('./', document.baseURI).href; return; } APP = ''; MF = false; history.pushState(null, '', location.pathname); welcome(); };
   if ($('#start')) $('#start').onclick = function () { begin(false); };
   if ($('#fresh')) $('#fresh').onclick = function () { ls('msf2_' + APP, ''); ls('msf_' + APP, ''); ls('msf2d_' + APP, ''); begin(true); };
 }
@@ -746,7 +750,7 @@ function welcome() {
 addEventListener('popstate', function () {
   if (DSCR) return;
   if (S.screen >= 0) save(); // keep answers, then show the start screen for this address
-  var raw = new URLSearchParams(location.search).get('app') || '';
+  var raw = new URLSearchParams(location.search).get('app') || FOLDER_APP;
   APP = msfApp(raw); MF = raw === 'multifamily' && APP === 'commercial'; welcome();
 });
 
@@ -884,7 +888,7 @@ function reviewHtml() {
 }
 function mfPreset() { if (MF && APP === 'commercial' && !S.data.assetClass) S.data.assetClass = 'Multifamily'; }
 function go(i, notice) {
-  mfPreset();
+  mfPreset(); setDocTitle();
   S.screen = i; var sc = screens(), s = sc[i], last = i === sc.length - 1;
   var body = s.id === 'docs' ? docsHtml() : s.id === 'review' ? reviewHtml() : s.id === 'calc' ? calcHtml(s.fields) : fieldsHtml(s.fields);
   var intro = { borrower: 'Tell us who is applying and how to reach you.', loan: 'The basics a lender looks at first.', fin: 'Approximate figures are fine at this stage.', project: 'The details that decide pricing and leverage. Use “Add these details later” for anything you don’t have handy.', docs: 'Upload what you have now — everything else can follow.', calc: 'Optional. Your numbers update instantly as you type. Blank boxes use the standard assumption shown. Estimates only — not a financing offer.', review: 'Check your answers, then submit securely.' }[s.id];
@@ -1093,21 +1097,21 @@ function removeUpload(uid, b) {
 var DSCR_IDS = ['value', 'presentValue', 'loanAmt', 'resUnits', 'comUnits', 'rentRes', 'rentCom', 'rentResPro', 'rentComPro', 'otherIncome', 'taxes', 'insurance', 'utilities', 'repairs', 'otherOpex', 'cashAvail', 'renoUnits', 'renoPerUnit', 'renoOther'];
 var DSCR_LABEL = { value: 'Purchase price (or value if refinancing)' };
 function dscrPage() {
-  S.screen = -1;
+  S.screen = -1; setDocTitle();
   var all = msfFields('commercial'), pick = DSCR_IDS.map(function (id) { var f = all.filter(function (x) { return x.id === id; })[0]; if (!f) return null; var c = JSON.parse(JSON.stringify(f)); delete c.s; delete c.r; if (DSCR_LABEL[id]) c.l = DSCR_LABEL[id]; return c; }).filter(Boolean);
   $('#app').innerHTML =
     '<header class="bar"><div class="wrap"><picture><source srcset="msf-mark-96.webp" type="image/webp"><img src="msf-mark-96.png" width="96" height="100" alt=""></picture><div class="nm">My Source Finance<small>DSCR Calculator</small></div></div></header>' +
     '<main class="wrap"><div class="head"><h2 tabindex="-1" id="ttl">DSCR Calculator</h2><p class="intro">Enter the property figures for an instant estimate of NOI, payment, DSCR, LTV and supportable loan. Nothing is saved or sent.</p></div>' +
     '<form id="frm" novalidate autocomplete="off">' + fieldsHtml(pick) + calcHtml(MSF_F.calcCom) + '</form>' +
     '<div style="display:grid;gap:10px;margin:22px 0 10px">' + (navigator.share ? '<button type="button" class="btn sec" id="dshare">Share this calculator</button>' : '') +
-    '<a class="btn pri" style="text-align:center;text-decoration:none" href="?app=commercial">Start a Commercial application</a><a class="btn sec" style="text-align:center;text-decoration:none" href="?app=multifamily">Start a Multifamily application</a></div></main>' +
+    '<a class="btn pri" style="text-align:center;text-decoration:none" href="commercial/">Start a Commercial application</a><a class="btn sec" style="text-align:center;text-decoration:none" href="multifamily/">Start a Multifamily application</a></div></main>' +
     '<footer class="wrap">' + FOOT + '</footer>';
   var frm = $('#frm');
   var upd = function (e) { var el = e.target; if (!el.name) return; if (e.type === 'input' && (el.type === 'radio' || el.type === 'checkbox')) return; setVal(el.name, el); calcBoxes(el.name); };
   frm.addEventListener('input', upd); frm.addEventListener('change', upd);
   frm.addEventListener('submit', function (e) { e.preventDefault(); });
   frm.addEventListener('focusout', function (e) { var el = e.target; if (el.closest && el.closest('.money')) el.value = money(el.value); });
-  if ($('#dshare')) $('#dshare').onclick = function () { navigator.share({ title: 'My Source Finance — DSCR Calculator', url: location.origin + location.pathname + '?app=dscr' }).catch(function () {}); };
+  if ($('#dshare')) $('#dshare').onclick = function () { navigator.share({ title: 'My Source Finance — DSCR Calculator', url: new URL('dscr/', document.baseURI).href }).catch(function () {}); };
   calcBoxes();
 }
 
