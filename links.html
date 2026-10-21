@@ -25,7 +25,7 @@ header p{margin:0;color:var(--mut);font-size:14px}
 ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
 li{display:flex;align-items:center;gap:12px;padding:14px 14px 14px 18px;border-radius:14px;border:1px solid var(--line2);background:linear-gradient(180deg,#132a55,#0d1d3b)}
 li a.open{flex:1;min-width:0;text-decoration:none;color:inherit}
-li b{display:block;font:600 20px/1.2 var(--serif);color:var(--gold2)}
+li b{display:block;font:600 19px/1.2 var(--serif);color:var(--gold2)}
 li span{display:block;font-size:14px;color:var(--mut)}
 button{font:600 16px/1 var(--sans);min-width:88px;min-height:48px;padding:0 16px;border-radius:12px;border:0;background:linear-gradient(180deg,#f6e4a6,#c9a24a);color:#08142b;cursor:pointer}
 button.done{background:var(--ok)}
@@ -44,12 +44,12 @@ footer{margin-top:24px;text-align:center;color:var(--mut);font-size:12px;line-he
 </main>
 <script>
 var LINKS = [
-  ['residential', 'Residential Mortgage', 'Purchase or refinance a home'],
-  ['commercial', 'Commercial Loan', '$1M–$70M commercial property'],
-  ['construction', 'Construction Financing', 'Ground-up and major renovation'],
-  ['private', 'Private / Fix & Flip', 'Bridge, fix-and-flip, rentals'],
-  ['multifamily', 'Multifamily Loan', '5+ unit apartment buildings'],
-  ['dscr', 'DSCR Calculator', 'Instant DSCR, NOI and loan estimate']
+  ['residential', 'Residential Application, Mortgages', 'Purchase or refinance a home'],
+  ['commercial', 'Commercial $1M-$70M, Commercial Buildings, Multifamily, Mixed Use, Retail, Office, Industrial, Nursing Homes', 'Commercial and multifamily property'],
+  ['construction', 'Ground-Up Construction and Development Financing', 'New construction and development'],
+  ['private', 'Private Lending, Hard Money, Fix and Flips', 'Investor loans, with DSCR calculator'],
+  ['dscr', 'DSCR Calculator', 'Instant DSCR, NOI and loan estimate'],
+  ['programs', 'All Programs', 'Every application plus the DSCR calculator']
 ];
 var base = location.origin + location.pathname.replace(/links(\.html)?\/?$/, ''); // works for /links and /links.html
 document.getElementById('list').innerHTML = LINKS.map(function (l, i) {
@@ -58,7 +58,7 @@ document.getElementById('list').innerHTML = LINKS.map(function (l, i) {
 document.getElementById('list').addEventListener('click', function (e) {
   var b = e.target.closest('button'); if (!b) return;
   var l = LINKS[b.dataset.i], url = base + l[0] + '/';
-  var text = 'My Source Finance — ' + l[1] + (l[0] === 'dscr' ? '' : ' application');
+  var text = 'My Source Finance — ' + l[1];
   if (navigator.share) { navigator.share({ title: text, text: text, url: url }).catch(function () {}); return; }
   (navigator.clipboard ? navigator.clipboard.writeText(url) : Promise.reject()).then(function () {
     b.textContent = 'Copied'; b.classList.add('done'); setTimeout(function () { b.textContent = 'Send'; b.classList.remove('done'); }, 1500);

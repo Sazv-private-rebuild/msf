@@ -7,13 +7,14 @@ import html, os, re, sys
 SITE = 'https://sazv-private-rebuild.github.io/msf/'
 IMAGE = SITE + 'msf-logo-640.png'
 APPS = [
-    ('residential', 'Residential Mortgage Application', 'Purchase or refinance a home — secure application, about 6 minutes on your phone.'),
-    ('commercial', 'Commercial Loan Application', 'Commercial property financing from $1M to $70M — secure application, about 8 minutes.'),
-    ('construction', 'Construction Financing Application', 'Ground-up construction and development financing — secure application, about 8 minutes.'),
-    ('private', 'Private / Fix & Flip Application', 'Bridge, fix-and-flip and rental financing for investors — secure application, about 7 minutes.'),
-    ('multifamily', 'Multifamily Loan Application', 'Financing for apartment buildings with 5 or more units — secure application, about 8 minutes.'),
+    ('residential', 'Residential Application, Mortgages', 'Purchase or refinance a home — secure application, about 6 minutes on your phone.'),
+    ('commercial', 'Commercial $1M-$70M — Commercial Buildings, Multifamily, Mixed Use, Retail, Office, Industrial, Nursing Homes', 'Commercial and multifamily financing from $1M to $70M — secure application, about 8 minutes.'),
+    ('construction', 'Ground-Up Construction and Development Financing', 'Ground-up construction and development financing — secure application, about 8 minutes.'),
+    ('private', 'Private Lending, Hard Money, Fix and Flips', 'Private, hard money and fix-and-flip loans for investors, with DSCR calculator — about 7 minutes.'),
     ('dscr', 'DSCR Calculator', 'Instant DSCR, NOI and loan estimate for an income property. Nothing is saved or sent.'),
+    ('programs', 'All Programs', 'Every My Source Finance application in one place, plus the DSCR calculator.'),
 ]
+REDIRECTS = [('multifamily', 'commercial')]  # Multifamily is part of Commercial
 
 root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 src = open(os.path.join(root, 'index.html'), encoding='utf-8').read()
@@ -43,3 +44,14 @@ for key, title, desc in APPS:
     os.makedirs(os.path.join(root, key), exist_ok=True)
     open(os.path.join(root, key, 'index.html'), 'w', encoding='utf-8').write(out)
     print('built', key + '/')
+for old, new in REDIRECTS:
+    t = [x for x in APPS if x[0] == new][0]
+    page = ('<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex">'
+            '<title>%s — My Source Finance</title>' % html.escape(t[1]) +
+            '<meta property="og:site_name" content="My Source Finance"><meta property="og:title" content="%s — My Source Finance">' % html.escape(t[1], quote=True) +
+            '<meta property="og:description" content="%s"><meta property="og:image" content="%s"><meta property="og:url" content="%s%s/">' % (html.escape(t[2], quote=True), IMAGE, SITE, new) +
+            '<meta http-equiv="refresh" content="0; url=../%s/"><script>location.replace("../%s/" + location.search)</script></head>' % (new, new) +
+            '<body><p><a href="../%s/">Open the application</a></p></body></html>' % new)
+    os.makedirs(os.path.join(root, old), exist_ok=True)
+    open(os.path.join(root, old, 'index.html'), 'w', encoding='utf-8').write(page)
+    print('redirect', old + '/ ->', new + '/')
