@@ -51,7 +51,7 @@ var LINKS = [
   ['multifamily', 'Multifamily Loan', '5+ unit apartment buildings'],
   ['dscr', 'DSCR Calculator', 'Instant DSCR, NOI and loan estimate']
 ];
-var base = location.origin + location.pathname.replace(/links\.html$/, '');
+var base = location.origin + location.pathname.replace(/links(\.html)?\/?$/, ''); // works for /links and /links.html
 document.getElementById('list').innerHTML = LINKS.map(function (l, i) {
   return '<li><a class="open" href="' + base + '?app=' + l[0] + '"><b>' + l[1] + '</b><span>' + l[2] + '</span></a><button type="button" data-i="' + i + '" aria-label="Send ' + l[1] + ' link">Send</button></li>';
 }).join('');

@@ -52,6 +52,13 @@ button,input,select,textarea{font:inherit;color:inherit}
 .pick button span{grid-column:1;color:var(--mut);font-size:15px}
 .pick button em{grid-row:1/3;grid-column:2;align-self:center;font-style:normal;font-size:13px;color:var(--mut);white-space:nowrap}
 .pick button[aria-pressed=true]{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold) inset}
+.hero.one{padding:18px 0 4px}
+.hero.one picture img{width:min(200px,56vw)}
+.hero.one h1{font-size:32px;margin:14px 0 6px}
+.hero .lead{color:var(--text);opacity:.9}
+.hero .mins{font-size:14px;margin-top:6px}
+.go{display:grid;gap:10px;margin:18px 0 6px}
+.other{text-align:center;margin:8px 0 0}
 .need{border-left:2px solid var(--gold3);padding:2px 0 2px 14px;margin:18px 0;color:var(--mut);font-size:15px}
 .need b{color:var(--text);font-weight:600}
 
@@ -709,23 +716,39 @@ function hp() { var h = $('[name=website]'); return h ? h.value : ''; }
 // ---------- welcome ----------
 function welcome() {
   S.screen = -1;
-  var picked = APP, saved = picked && (ls('msf2_' + picked) || ls('msf_' + picked));
-  var h = '<main class="wrap"><div class="hero"><picture><source srcset="msf-logo-320.webp 320w, msf-logo-640.webp 640w" sizes="300px" type="image/webp"><img src="msf-logo-640.png" width="640" height="325" alt="My Source Finance — Finance & Mortgage Group"></picture>' +
-    '<h1>' + (picked ? esc(appTitle(picked)) + ' application' : 'Private client application') + '</h1>' +
-    '<p>' + (picked ? 'About ' + MSF_APPS[picked].minutes + ' minutes on your phone. Your progress saves as you go, and longer sections can be finished later.' : 'Choose the financing you need. Each application takes a few minutes on your phone and saves as you go.') + '</p></div><div class="rule"></div>';
-  h += '<div class="pick" role="group" aria-label="Loan type">' + Object.keys(MSF_APPS).map(function (k) {
-    var a = MSF_APPS[k]; return '<button type="button" data-app="' + k + '" aria-pressed="' + (k === picked) + '"><b>' + esc(a.title) + '</b><span>' + esc(a.blurb) + '</span><em>' + a.minutes + ' min</em></button>';
-  }).join('') + '</div>';
+  var picked = APP, saved = picked && (ls('msf2_' + picked) || ls('msf_' + picked)), h;
   if (picked) {
-    h += '<div class="need"><b>Have handy:</b> the property address, the loan amount you need, and a rough idea of your income or cash on hand. Documents can be photographed or uploaded later. We never ask for your Social Security number.</div>';
-    h += '<div style="display:grid;gap:10px;margin:22px 0 10px"><button class="btn pri" id="start">' + (saved ? 'Continue my application' : 'Start application') + '</button>' + (saved ? '<button class="btn sec" id="fresh">Start over</button>' : '') + '</div>';
+    // Direct link (?app=...): only this application, Start button above the fold.
+    var blurb = MF ? 'Apartment buildings with 5 or more units — purchase, refinance or bridge financing.' : MSF_APPS[picked].blurb;
+    h = '<main class="wrap"><div class="hero one"><picture><source srcset="msf-logo-320.webp 320w, msf-logo-640.webp 640w" sizes="200px" type="image/webp"><img src="msf-logo-640.png" width="640" height="325" alt="My Source Finance — Finance & Mortgage Group"></picture>' +
+      '<h1>' + esc(appTitle(picked)) + '</h1><p class="lead">' + esc(blurb) + '</p>' +
+      '<p class="mins">About ' + MSF_APPS[picked].minutes + ' minutes · saves as you go</p></div>' +
+      '<div class="go"><button class="btn pri" id="start">' + (saved ? 'Continue my application' : 'Start application') + '</button>' + (saved ? '<button class="btn sec" id="fresh">Start over</button>' : '') + '</div>' +
+      '<div class="need"><b>Have handy:</b> the property address, the loan amount you need, and a rough idea of your income or cash on hand. Documents can be photographed or uploaded later. We never ask for your Social Security number.</div>' +
+      '<p class="other"><button type="button" class="link" id="choose">Choose a different loan type</button></p>';
+  } else {
+    // No application in the link: loan-type chooser.
+    h = '<main class="wrap"><div class="hero"><picture><source srcset="msf-logo-320.webp 320w, msf-logo-640.webp 640w" sizes="300px" type="image/webp"><img src="msf-logo-640.png" width="640" height="325" alt="My Source Finance — Finance & Mortgage Group"></picture>' +
+      '<h1>Private client application</h1><p>Choose the financing you need. Each application takes a few minutes on your phone and saves as you go.</p></div><div class="rule"></div>' +
+      '<div class="pick" role="group" aria-label="Loan type">' + Object.keys(MSF_APPS).map(function (k) {
+        var a = MSF_APPS[k]; return '<button type="button" data-app="' + k + '"><b>' + esc(a.title) + '</b><span>' + esc(a.blurb) + '</span><em>' + a.minutes + ' min</em></button>';
+      }).join('') + '</div>';
   }
   h += '<p style="text-align:center;color:var(--mut);font-size:15px;margin:18px 0 30px">Simon Zarour · Mortgage Loan Originator · NMLS #2684220<br>Call or text <a href="tel:+12014849544">' + PHONE + '</a></p></main><footer class="wrap home">' + FOOT + '</footer>';
   $('#app').innerHTML = h;
-  $$('.pick button').forEach(function (b) { b.onclick = function () { APP = b.dataset.app; MF = false; history.replaceState(null, '', location.pathname + '?app=' + APP); welcome(); var s = $('#start'); if (s) s.focus(); }; });
+  scrollTo(0, 0);
+  $$('.pick button').forEach(function (b) { b.onclick = function () { APP = b.dataset.app; MF = false; history.pushState(null, '', location.pathname + '?app=' + APP); welcome(); var s = $('#start'); if (s) s.focus(); }; });
+  if ($('#choose')) $('#choose').onclick = function () { APP = ''; MF = false; history.pushState(null, '', location.pathname); welcome(); };
   if ($('#start')) $('#start').onclick = function () { begin(false); };
   if ($('#fresh')) $('#fresh').onclick = function () { ls('msf2_' + APP, ''); ls('msf_' + APP, ''); ls('msf2d_' + APP, ''); begin(true); };
 }
+// Browser Back between the chooser and a loan type's start screen.
+addEventListener('popstate', function () {
+  if (DSCR) return;
+  if (S.screen >= 0) save(); // keep answers, then show the start screen for this address
+  var raw = new URLSearchParams(location.search).get('app') || '';
+  APP = msfApp(raw); MF = raw === 'multifamily' && APP === 'commercial'; welcome();
+});
 
 function begin(fresh) {
   api('stamp', {}).then(function (s) { S.stamp = s; }).catch(function () {});
@@ -1012,7 +1035,7 @@ function finishLater() {
   document.addEventListener('keydown', function k(e) { if (e.key === 'Escape') { close(); document.removeEventListener('keydown', k); } });
   save(function (ok) {
     if (!ok || !S.token) { $('#shh').textContent = 'Kept on this phone'; $('#shp').innerHTML = 'We couldn’t reach the server right now, so your answers are stored on this phone. Open this same link on this phone to continue.<div class="btns"><button class="btn pri" id="shx">OK</button></div>'; $('#shx').onclick = close; return; }
-    var link = location.origin + location.pathname + '?app=' + APP + '&resume=' + S.token;
+    var link = location.origin + location.pathname + '?app=' + (MF ? 'multifamily' : APP) + '&resume=' + S.token;
     $('#shh').textContent = 'Saved';
     $('#shp').innerHTML = 'This phone will reopen your application automatically. To continue on another device, keep this private link — anyone with it can open your saved answers.' +
       '<label class="sr" for="shl">Your private link</label><input id="shl" type="text" readonly value="' + esc(link) + '" style="margin-top:12px">' +
